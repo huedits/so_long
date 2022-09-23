@@ -10,6 +10,7 @@ void	free_map(t_map *map)
 		free(map->array[i]);
 		i++;
 	}
+	free(map->array);
 }
 
 void	write_hwall(int fd, size_t size, int final)

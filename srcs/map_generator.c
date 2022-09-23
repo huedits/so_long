@@ -1,48 +1,45 @@
 #include "../libs/map_generator.h"
 
-int	create_map()
+void	create_map(void)
 {
 	t_map	map;
-	int		i;
-	
 
 	map.width = (random() % 15) + 7;
 	map.height = (random() % 15) + 5;
 	map.max_lenght = (map.width + map.height) / 2;
 	map.max_tunnels = (map.width + map.height) * 2;
-	map.array = (char **) malloc ((map.height + 1) * sizeof(char *));
-	if (!map)
-		return (NULL);
-	i = 0;
-	while (i < height)
-	{
-		map.array[i] = (char *) malloc (map.width + 1);
-		if (!map.array[i])
-			return NULL;
-		i++;
-	}
-	map.array[i][0] = 0;
-	map.array = init_map(&map);
+	init_map(&map);
+	create_tunnels(&map);
 }
 
-char	**init_map(t_map *ptmap)
+int	init_map(t_map *ptmap)
 {
 	int		i;
 	int		j;
 
+	ptmap->array = (char **) malloc ((ptmap->height + 1) * sizeof(char *));
+	if (!ptmap->array)
+		return (NULL);
 	i = 0;
 	while (i < height)
+	{
+		ptmap->array[i] = (char *) malloc (ptmap->width + 1);
+		if (!ptmap->array[i])
+			return NULL;
+		i++;
+	}
+	ptmap->array[i][0] = 0; //Verificar se é necessário.
+	while (i > 0)
 	{
 		j = 0;
 		while (j < width)
 		{
-			ptmap->array[i][j] = '1';
+			ptmap->array[i - 1][j] = '1';
 			j++;
 		}
-		ptmap->array[i][j] = '\0';
+		ptmap->array[i - 1][j] = '\0';
 		i++;
 	}
-	return (array);
 }
 
 void	create_tunnels(t_map *tnmap)

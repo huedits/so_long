@@ -15,5 +15,8 @@ typedef struct	s_map
 	size_t	max_tunnels;
 }				t_map;
 
+void	create_map(void);
+int		init_map(t_map *ptmap);
+void	create_tunnels(t_map *tnmap);
 
 #endif

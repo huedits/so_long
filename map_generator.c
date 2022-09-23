@@ -1,25 +1,13 @@
-#include <time.h>
-#include <stdlib.h>
+#include "../libs/map_generator.h"
 
-typedef struct	s_map
+int	create_map()
 {
-	char	**array;
-	size_t	width;
-	size_t	height;
-	size_t	max_lenght;
-	size_t	max_tunnels;
-}				t_map;
-
-int	create_map(size_t width, size_t height)
-{
-	t_map	map;	
+	t_map	map;
 	int		i;
 	int		current_pos[2];
 
-	if (width < 5 || height < 5)
-		return (-1);
-	map.width = width - 2;
-	map.height = height - 2;
+	map.width = (random() % 15) + 7;
+	map.height = (random() % 15) + 5;
 	map.array = (char **) malloc ((map.height + 1) * sizeof(char *));
 	if (!map)
 		return (NULL);
@@ -59,13 +47,13 @@ char	**init_map(t_map *ptmap)
 
 void	create_tunnels(t_map *tnmap)
 {
-	int	directions[4][1][2];
+	int	directions[4][2];
 	int	last_direction;
 	int	rand_direction;
 
-	directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-	tnmap->max_lenght = (tnmap->width * tnmap->height) / 2;
-	tnmap->max_tunnels = (tnmap->width * tnmap->height) * 2;
+	directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+	tnmap->max_lenght = (tnmap->width + tnmap->height) / 2;
+	tnmap->max_tunnels = (tnmap->width + tnmap->height) * 2;
 	last_direction = 0;
 	while (max_tunnels > 0)
 	{

@@ -21,8 +21,8 @@ typedef struct	s_map
 void	create_map(void);
 void	init_map(t_map *ptmap);
 void	create_tunnels(t_map *tnmap);
-void	add_collectibles(tmap *map);
-void	write_map(tmap *map);
+void	add_collectibles(t_map *map);
+void	write_map(t_map *map);
 void	free_map(t_map *map);
 void	write_hwall(int fd, size_t size, int final);
 

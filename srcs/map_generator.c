@@ -15,7 +15,7 @@ void	create_map(void)
 	add_collectibles(&map);
 	write_map(&map);
 	free_map(&map);
-	free(map);
+	free(map.array);
 }
 
 void	init_map(t_map *ptmap)
@@ -25,13 +25,13 @@ void	init_map(t_map *ptmap)
 
 	ptmap->array = (char **) malloc ((ptmap->height + 1) * sizeof(char *));
 	if (!ptmap->array)
-		return (NULL);
+		return ;
 	i = 0;
-	while (i < height)
+	while (i < ptmap->height)
 	{
 		ptmap->array[i] = (char *) malloc (ptmap->width + 1);
 		if (!ptmap->array[i])
-			return NULL;
+			return ;
 		i++;
 	}
 	ptmap->array[i][0] = 0; //Verificar se é necessário.
@@ -56,9 +56,9 @@ void	create_tunnels(t_map *tnmap)
 	int	tunnel_size;
 
 	ldir = {2, 2};
-	cpos[0] = random() % height;
-	cpos[1] = random() % width;
-	tnmap->array[cpos[0], cpos[y]] = 'P';
+	cpos[0] = random() % tnmap->height;
+	cpos[1] = random() % tnmap->width;
+	tnmap->array[cpos[0], cpos[1]] = 'P';
 	while (tnmap->max_tunnels > 0)
 	{
 		tunnel_size = 0;
@@ -69,15 +69,15 @@ void	create_tunnels(t_map *tnmap)
 		{
 			cpos[0] += rdir[0];
 			cpos[1] += rdir[1];
-			if (tnmap->array[cpos[0], cpos[y]] == '1')
-				tnmap->array[cpos[0], cpos[y]] = '0';
+			if (tnmap->array[cpos[0], cpos[1]] == '1')
+				tnmap->array[cpos[0], cpos[1]] = '0';
 			tunnel_size++;
 		}
 		tnmap->max_tunnels--;
 	}
 }
 
-void	add_collectibles(tmap *map)
+void	add_collectibles(t_map *map)
 {
 	int	rpos[2];
 
@@ -93,7 +93,7 @@ void	add_collectibles(tmap *map)
 	}
 }
 
-void	write_map(tmap *map)
+void	write_map(t_map *map)
 {
 	int		fd;
 	size_t	i;

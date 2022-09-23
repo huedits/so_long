@@ -4,18 +4,24 @@ void	create_map(void)
 {
 	t_map	map;
 
+	srandom(time(NULL));
 	map.width = (random() % 15) + 7;
 	map.height = (random() % 15) + 5;
 	map.max_lenght = (map.width + map.height) / 2;
 	map.max_tunnels = (map.width + map.height) * 2;
+	map.collectibles = (random() % 2) + map.max_lenght;
 	init_map(&map);
 	create_tunnels(&map);
+	add_collectibles(&map);
+	write_map(&map);
+	free_map(&map);
+	free(map);
 }
 
-int	init_map(t_map *ptmap)
+void	init_map(t_map *ptmap)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	ptmap->array = (char **) malloc ((ptmap->height + 1) * sizeof(char *));
 	if (!ptmap->array)
@@ -32,7 +38,7 @@ int	init_map(t_map *ptmap)
 	while (i > 0)
 	{
 		j = 0;
-		while (j < width)
+		while (j < ptmap->width)
 		{
 			ptmap->array[i - 1][j] = '1';
 			j++;
@@ -44,25 +50,70 @@ int	init_map(t_map *ptmap)
 
 void	create_tunnels(t_map *tnmap)
 {
-	int	directions[4][2];
-	int	current_pos[2];
-	int	last_direction[2];
-	int	rand_direction[2];
-//					UP		DOWN	LEFT	RIGHT
-	directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	last_direction = {2, 2};
-	current_pos[0] = random() % height;
-	current_pos[1] = random() % width;
+	int	cpos[2];
+	int	ldir[2];
+	int	rdir[2];
+	int	tunnel_size;
+
+	ldir = {2, 2};
+	cpos[0] = random() % height;
+	cpos[1] = random() % width;
+	tnmap->array[cpos[0], cpos[y]] = 'P';
 	while (tnmap->max_tunnels > 0)
 	{
-		while((	rand_direction[0] == -last_direction[0] &&    
-          		rand_direction[1] == -last_direction[1]) || 
-         		(rand_direction[0] == last_direction[0] &&  
-          		rand_direction[1] == last_direction[1]))
-			rand_direction = directions[random() % 4];
-		/*
-		WALKING BLOCK
-		*/
+		tunnel_size = 0;
+		while ((	rdir[0] == -ldir[0] && rdir[1] == -ldir[1])
+			|| (rdir[0] == ldir[0] && rdir[1] == ldir[1]))
+			rdir = directions[random() % 4];
+		while (tunnel_size < tnmap->max_lenght)
+		{
+			cpos[0] += rdir[0];
+			cpos[1] += rdir[1];
+			if (tnmap->array[cpos[0], cpos[y]] == '1')
+				tnmap->array[cpos[0], cpos[y]] = '0';
+			tunnel_size++;
+		}
 		tnmap->max_tunnels--;
 	}
+}
+
+void	add_collectibles(tmap *map)
+{
+	int	rpos[2];
+
+	while(map->collectibles)
+	{
+		rpos[0] = random() % map->height;
+		rpos[1] = random() % map->width;
+		if (map->array[rpos[0], rpos[1]] == '0')
+		{
+			map->array[rpos[0], rpos[1]] = 'C';
+			map->collectibles--;
+		}
+	}
+}
+
+void	write_map(tmap *map)
+{
+	int		fd;
+	size_t	i;
+	size_t	j;
+
+	fd = open("map", O_WRONLY, O_CREAT);
+	write_hwall(fd, (map->width + 2), 0);
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0
+		write(fd, "1", 1);
+		while (j < map->width)
+		{
+			write(fd, &(map->array[i][j]), 1);
+			j++;
+		}
+		write(fd, "1\n", 2);
+		i++;
+	}
+	write_hwall(fd, (map->width + 2), 1);
+	close(fd);
 }

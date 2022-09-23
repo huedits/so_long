@@ -55,16 +55,17 @@ void	create_tunnels(t_map *tnmap)
 	int	rdir[2];
 	int	tunnel_size;
 
-	ldir[] = {2, 2};
+	ldir[0] = 2;
+	ldir[1] = 2;
 	cpos[0] = random() % tnmap->height;
 	cpos[1] = random() % tnmap->width;
 	tnmap->array[cpos[0]][cpos[1]] = 'P';
 	while (tnmap->max_tunnels > 0)
 	{
 		tunnel_size = 0;
-		while ((	rdir[0] == -ldir[0] && rdir[1] == -ldir[1])
+		while ((rdir[0] == -ldir[0] && rdir[1] == -ldir[1])
 			|| (rdir[0] == ldir[0] && rdir[1] == ldir[1]))
-			rdir = DIRECTIONS[random() % 4];
+			get_random_dir(&rdir);
 		while (tunnel_size < tnmap->max_lenght)
 		{
 			cpos[0] += rdir[0];

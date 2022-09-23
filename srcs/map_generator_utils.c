@@ -25,7 +25,7 @@ void	write_hwall(int fd, size_t size, int final)
 		write(fd, "\n", 1);
 }
 
-void	get_random_dir(int **new_dir)
+void	get_random_dir(int (*)[2]new_dir)
 {
 	int	random_dir;
 

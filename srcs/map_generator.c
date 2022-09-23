@@ -57,8 +57,8 @@ void	create_tunnels(t_map *tnmap)
 
 	ldir[0] = 2;
 	ldir[1] = 2;
-	cpos[0] = random() % tnmap->height;
-	cpos[1] = random() % tnmap->width;
+	cpos[0] = random() % (tnmap->height - 1);
+	cpos[1] = random() % (tnmap->width - 1);
 	tnmap->array[cpos[0]][cpos[1]] = 'P';
 	while (tnmap->max_tunnels > 0)
 	{
@@ -84,8 +84,8 @@ void	add_collectibles(t_map *map)
 
 	while(map->collectibles)
 	{
-		rpos[0] = random() % map->height;
-		rpos[1] = random() % map->width;
+		rpos[0] = random() % (map->height - 1);
+		rpos[1] = random() % (map->width - 1);
 		if (map->array[rpos[0]][rpos[1]] == '0')
 		{
 			map->array[rpos[0]][rpos[1]] = 'C';

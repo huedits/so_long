@@ -44,7 +44,7 @@ void	init_map(t_map *ptmap)
 			j++;
 		}
 		ptmap->array[i - 1][j] = '\0';
-		i++;
+		i--;
 	}
 }
 

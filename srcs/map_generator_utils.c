@@ -25,29 +25,29 @@ void	write_hwall(int fd, size_t size, int final)
 		write(fd, "\n", 1);
 }
 
-void	get_random_dir(int *new_dir)
+void	get_random_dir(int *new_dir1, int *new_dir2)
 {
 	int	random_dir;
 
 	random_dir = random() % 4;
 	if (random_dir == 0)
 	{
-		*new_dir[0] = -1;
-		*new_dir[1] = 0;
+		*new_dir1 = -1;
+		*new_dir2 = 0;
 	}
 	if (random_dir == 1)
 	{
-		*new_dir[0] = 1;
-		*new_dir[1] = 0;
+		*new_dir1 = 1;
+		*new_dir2 = 0;
 	}
 	if (random_dir == 2)
 	{
-		*new_dir[0] = 0;
-		*new_dir[1] = -1;
+		*new_dir1 = 0;
+		*new_dir2 = -1;
 	}
 	if (random_dir == 3)
 	{
-		*new_dir[0] = 0;
-		*new_dir[1] = 1;
+		*new_dir1 = 0;
+		*new_dir2 = 1;
 	}
 }

@@ -76,6 +76,9 @@ void	create_tunnels(t_map *tnmap)
 		}
 		tnmap->max_tunnels--;
 	}
+	if (tnmap->array[cpos[0]][cpos[1]] == '1'
+		|| tnmap->array[cpos[0]][cpos[1]] == '0')
+		tnmap->array[cpos[0]][cpos[1]] = 'E';
 }
 
 void	add_collectibles(t_map *map)

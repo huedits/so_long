@@ -5,8 +5,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-//						UP		DOWN	LEFT	RIGHT
-# define DIRECTIONS[4] {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 typedef struct	s_map
 {
@@ -25,5 +23,6 @@ void	add_collectibles(t_map *map);
 void	write_map(t_map *map);
 void	free_map(t_map *map);
 void	write_hwall(int fd, size_t size, int final);
+void	get_random_dir(int *new_dir[2]);
 
 #endif

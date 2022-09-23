@@ -55,7 +55,7 @@ void	create_tunnels(t_map *tnmap)
 	int	rdir[2];
 	int	tunnel_size;
 
-	ldir = {2, 2};
+	ldir[] = {2, 2};
 	cpos[0] = random() % tnmap->height;
 	cpos[1] = random() % tnmap->width;
 	tnmap->array[cpos[0]][cpos[1]] = 'P';

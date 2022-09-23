@@ -6,7 +6,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 //						UP		DOWN	LEFT	RIGHT
-# define DIRECTIONS {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+# define DIRECTIONS[] {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 typedef struct	s_map
 {

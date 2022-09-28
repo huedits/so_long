@@ -9,9 +9,12 @@ And thanks for all the fish
 ```diff
 - Early development stage.
 ```
-**Source files:**
+**Source files:** \
+[map_generator.c](srcs/map_generator.c)
+| [map_generator_utils.c](srcs/map_generator_utils.c)
 
-**Header File:**
+**Header File:** \
+[map_generator.h](libs/map_generator.h)
 
 **Makefile:**
 

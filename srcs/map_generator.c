@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/28 17:07:26 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 01:51:22 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	create_map(void)
 
 void	init_map(t_map *ptmap)
 {
-	size_t		i;
-	size_t		j;
+	int		i;
+	int		j;
 
 	ptmap->array = (char **) malloc ((ptmap->height + 1) * sizeof(char *));
 	if (!ptmap->array)
@@ -88,7 +88,7 @@ void	create_tunnels(t_map *tnmap)
 void	add_collectibles(t_map *map)
 {
 	int		rpos[2];
-	size_t	col_added;
+	int	col_added;
 
 	col_added = 0;
 	while (col_added <= map->collectibles)
@@ -105,9 +105,9 @@ void	add_collectibles(t_map *map)
 
 void	write_map(t_map *map)
 {
-	int		fd;
-	size_t	i;
-	size_t	j;
+	int	fd;
+	int	i;
+	int	j;
 
 	remove("map");
 	fd = open("map", O_RDWR | O_CREAT, 0666);

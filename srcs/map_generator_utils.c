@@ -6,13 +6,13 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:06:00 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/28 16:53:05 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 01:51:42 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/map_generator.h"
 
-void	free_map(t_map *map, size_t height)
+void	free_map(t_map *map, int height)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	free_map(t_map *map, size_t height)
 	free(map->array);
 }
 
-void	write_hwall(int fd, size_t size, int final)
+void	write_hwall(int fd, int size, int final)
 {
 	while (size > 0)
 	{

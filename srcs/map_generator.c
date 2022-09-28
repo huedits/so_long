@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/28 16:52:19 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:07:26 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	create_map(void)
 	map.height = (random() % 16) + 5;
 	map.max_lenght = (map.width + map.height) / 2;
 	map.max_tunnels = map.max_lenght * 4;
-	map.collectibles = (random() % 10) + 1;
+	map.collectibles = (random() % 9) + 3;
 	init_map(&map);
 	create_tunnels(&map);
 	add_collectibles(&map);

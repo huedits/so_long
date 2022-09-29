@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:06:04 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/29 01:50:55 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:39:45 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct s_map
 {

@@ -21,6 +21,8 @@ fclean: clean
 run:
 	valgrind ./$(NAME) 2> leaks.txt
 
+re: fclean all
+
 git: fclean
 	git add .
 	sleep 5

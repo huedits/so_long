@@ -6,11 +6,11 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:06:00 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/29 01:51:42 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 23:24:29 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/map_generator.h"
+#include "map_generator.h"
 
 void	free_map(t_map *map, int height)
 {

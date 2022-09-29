@@ -6,11 +6,11 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/29 20:05:26 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 23:24:25 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/map_generator.h"
+#include "map_generator.h"
 
 void	create_map(void)
 {
@@ -109,7 +109,7 @@ void	write_map(t_map *map)
 	int	i;
 	int	j;
 
-	fd = open("map", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	fd = open("map", O_RDWR | O_CREAT | O_TRUNC, 0664);
 	write_hwall(fd, (map->width + 2), 0);
 	i = 0;
 	while (i < map->height)

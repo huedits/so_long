@@ -6,11 +6,11 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:01:23 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/29 19:37:57 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/29 23:26:25 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/get_next_line.h"
+#include "get_next_line.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

@@ -1,17 +1,20 @@
 NAME = so_long
 MGNAME = mapgen
 MVNAME = mapviz
+
 LIBPATH = ./libs/
 SRCPATH = ./srcs/
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LXFLAGS = -lX11 -lXext -lmlx
+
 RM = rm -rf
 
 MGSRCS = main.c $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 												map_generator_utils.c )
 
-MVSRCS = $(addprefix $(SRCPATH)mapviz/,	map_visualizer.c)
+MVSRCS = $(addprefix 		$(SRCPATH)mapviz/,	map_visualizer.c )
 
 all: $(NAME)
 
@@ -22,7 +25,10 @@ $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
 
 $(MVNAME):
-	$(CC) $(CFLAGS) -I $(LIBPATH) $(MVSRCS) $(LXFLAGS) -g -o $@
+	$(CC) $(CFLAGS) -I $(LIBPATH) $(MVSRCS) $(LXFLAGS) -g3 -o $@
+
+del: $(arg)
+	$(RM) $(arg)
 
 clean:
 	$(RM) *.o
@@ -34,7 +40,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 val:
-	valgrind ./$1 2> leaks_$1.txt
+	valgrind ./$(arg) 2> leaks_$(arg).txt
 
 re: fclean all
 

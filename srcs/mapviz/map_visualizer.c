@@ -6,13 +6,13 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:23:03 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/30 04:53:20 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/30 05:13:44 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_visualizer.h"
 
-int main (void)
+int main(void)
 {
 	t_data	data;
 
@@ -27,8 +27,7 @@ int main (void)
 		return (MLX_ERROR);
 	}
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, 
-		&data.img.line_len, &data.img.endian);
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
@@ -55,23 +54,31 @@ int	handle_keypress(int keysym, t_data *data)
 int	render(t_data *data)
 {
 	int	i;
+	int	j;
 
 	if (data->win_ptr == NULL)
 		return (1);
 	i = 0;
-	while (i++ <= WINDOW_WIDTH - 100)
+	j = 0;
+	render_background(&data->img, BLACK_PIXEL);
+	while (j + 100 <= WINDOW_HEIGHT)
 	{
-		render_background(&data->img, BLACK_PIXEL);
-		render_rect(&data->img, (t_rect){i, 0, 100, WINDOW_HEIGHT / 2, RED_PIXEL});
-		render_rect(&data->img, (t_rect){(WINDOW_WIDTH - 100) - i, WINDOW_HEIGHT / 2, 100, WINDOW_HEIGHT / 2, GREEN_PIXEL});
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	}
-	while (i-- >= 0)
-	{
-		render_background(&data->img, BLACK_PIXEL);
-		render_rect(&data->img, (t_rect){i, 0, 100, WINDOW_HEIGHT / 2, GREEN_PIXEL});
-		render_rect(&data->img, (t_rect){(WINDOW_WIDTH - 100) - i, WINDOW_HEIGHT / 2, 100, WINDOW_HEIGHT / 2, RED_PIXEL});
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+		while (i++ <= WINDOW_WIDTH - 100)
+		{
+			//render_background(&data->img, BLACK_PIXEL);
+			render_rect(&data->img, (t_rect){i, 0 + j, 100, 100, RED_PIXEL});
+			//render_rect(&data->img, (t_rect){(WINDOW_WIDTH - 100) - i, WINDOW_HEIGHT / 2, 100, WINDOW_HEIGHT / 2, GREEN_PIXEL});
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+		}
+		j += 100;
+		while (i-- >= 0)
+		{
+			//render_background(&data->img, BLACK_PIXEL);
+			render_rect(&data->img, (t_rect){i, 0 + j, 100, 100, GREEN_PIXEL});
+			//render_rect(&data->img, (t_rect){(WINDOW_WIDTH - 100) - i, WINDOW_HEIGHT / 2, 100, WINDOW_HEIGHT / 2, RED_PIXEL});
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+		}
+		j += 100;
 	}
 	return (0);
 }

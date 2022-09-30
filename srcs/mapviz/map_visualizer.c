@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:23:03 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/30 07:07:28 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/30 07:53:39 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int main(void)
 	}
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	render(&data);
+	create_handlers(&data);
+	/* render(&data); */
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
@@ -38,37 +37,25 @@ int main(void)
 int	render(t_data *data)
 {
 	int	i;
-	int	j;
 
 	if (data->win_ptr == NULL)
 		return (1);
-	j = 0;
-	while (j + 100 <= WINDOW_HEIGHT)
+	i = 0;
+	while (i < WINDOW_WIDTH - 50)
 	{
-		i = 0;
-		while (i <= WINDOW_WIDTH - 100 && j + 100 <= WINDOW_HEIGHT)
-		{
-			printf("j = %d\n", j);
-			render_rect(&data->img, (t_rect){i, 0 + j, 100, 100, WHITE_PIXEL});
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-			i += 100;
-			usleep(50000);
-		}
-		j += 100;
+		render_background(&data->img, BLACK_PIXEL);
+		render_rect(&data->img, (t_rect){i, 0, 50, WINDOW_HEIGHT, WHITE_PIXEL});
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+		i += 50;
+		usleep(40000);
 	}
-	j = 0;
-	while (j + 100 <= WINDOW_HEIGHT)
+	while (i > 0)
 	{
-		i = 0;
-		while (i <= WINDOW_WIDTH - 100 && j + 100 <= WINDOW_HEIGHT)
-		{
-			printf("j = %d\n", j);
-			render_rect(&data->img, (t_rect){i, 0 + j, 100, 100, BLACK_PIXEL});
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-			i += 100;
-			usleep(50000);
-		}
-		j += 100;
+		render_background(&data->img, BLACK_PIXEL);
+		render_rect(&data->img, (t_rect){i, 0, 50, WINDOW_HEIGHT, WHITE_PIXEL});
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+		i -= 50;
+		usleep(40000);
 	}
 	return (0);
 }

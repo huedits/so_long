@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/30 08:07:35 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/30 10:28:39 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void create_handlers(t_data *data)
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &handle_x_pressed, data);
 }
 
-int	handle_no_event(void *data)
+int	handle_no_event(t_data *data)
 {
 	render(data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 23:23:03 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/30 07:53:39 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/09/30 09:36:06 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(void)
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	create_handlers(&data);
-	/* render(&data); */
+	render(&data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
@@ -47,15 +47,15 @@ int	render(t_data *data)
 		render_rect(&data->img, (t_rect){i, 0, 50, WINDOW_HEIGHT, WHITE_PIXEL});
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 		i += 50;
-		usleep(40000);
+		usleep(1000000 / (WINDOW_WIDTH / 50));
 	}
 	while (i > 0)
 	{
-		render_background(&data->img, BLACK_PIXEL);
-		render_rect(&data->img, (t_rect){i, 0, 50, WINDOW_HEIGHT, WHITE_PIXEL});
+		render_background(&data->img, WHITE_PIXEL);
+		render_rect(&data->img, (t_rect){i, 0, 50, WINDOW_HEIGHT, BLACK_PIXEL});
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 		i -= 50;
-		usleep(40000);
+		usleep(1000000 / (WINDOW_WIDTH / 50));
 	}
 	return (0);
 }

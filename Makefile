@@ -11,11 +11,12 @@ LXFLAGS = -lX11 -lXext -lmlx
 
 RM = rm -rf
 
-MGSRCS = main.c $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
-												map_generator_utils.c )
+MGSRCS = $(addprefix $(SRCPATH)mapgen/,	main.c \
+										map_generator.c \
+										map_generator_utils.c )
 
-MVSRCS = $(addprefix 		$(SRCPATH)mapviz/,	map_visualizer.c \
-												handlers.c )
+MVSRCS = $(addprefix $(SRCPATH)mapviz/,	map_visualizer.c \
+										handlers.c )
 
 all: $(NAME)
 

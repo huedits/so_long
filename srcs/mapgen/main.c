@@ -1,4 +1,4 @@
-#include "libs/map_generator.h"
+#include "map_generator.h"
 
 int	main (void)
 {

@@ -33,12 +33,17 @@ void	generate_map(void)
 {
 	int	pid;
 
-	pid = fork();
-	if (pid == 0)
-		execlp("make", "make", "mapgen", NULL);
+	if (access("mapgen", X_OK) == 0)
+		execl("mapgen", "mapgen", NULL);
 	else
 	{
-		wait(NULL);
-		execl("mapgen", "mapgen", NULL);
+		pid = fork();
+		if (pid == 0)
+			execlp("make", "make", "mapgen", NULL);
+		else
+		{
+			wait(NULL);
+			execl("mapgen", "mapgen", NULL);
+		}
 	}
 }

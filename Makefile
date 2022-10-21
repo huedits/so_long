@@ -1,6 +1,5 @@
 NAME = so_long
 MGNAME = mapgen
-MVNAME = mapviz
 
 LIBPATH = ./libs/
 SRCPATH = ./srcs/
@@ -16,9 +15,6 @@ SRCS = $(addprefix $(SRCPATH), so_long.c)
 MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )
 
-MVSRCS = $(addprefix $(SRCPATH)mapviz/,	map_visualizer.c \
-										handlers.c )
-
 all: $(NAME)
 
 $(NAME): libft $(MGNAME)
@@ -26,9 +22,8 @@ $(NAME): libft $(MGNAME)
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
+	./mapgen
 
-$(MVNAME):
-	$(CC) $(CFLAGS) -I $(LIBPATH) $(MVSRCS) $(LXFLAGS) -g3 -o $@
 
 clean:
 	$(RM) *.o

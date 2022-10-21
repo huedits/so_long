@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 22:13:29 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 21:17:47 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,20 @@
 # include "get_next_line.h"
 # include "libft.h"
 
-typedef struct s_player
-{
-	int	x;
-	int	y;
-}	t_player;
-
 typedef struct s_map
 {
 	char	**array;
+	char	*name;
 	int		width;
 	int		height;
 	int		coins;
+	int		p_x;
+	int		p_y;
 }	t_map;
 
 typedef struct s_game
 {
 	t_map		map;
-	t_player	player;
 	int			steps;
 	int			status;
 }	t_game;

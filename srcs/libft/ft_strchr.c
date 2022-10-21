@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:59:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:09 by vimatheu         ###   ########.fr       */
+/*   Created: 2022/08/25 22:01:52 by vimatheu          #+#    #+#             */
+/*   Updated: 2022/08/31 20:21:06 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-int		read_file(char **aux_p, char **line_p, int fd);
-
-#endif
+	str = (char *)s;
+	if (c > 255)
+		return (str);
+	while (*str && *str != c)
+		str++;
+	if (*str == c)
+		return (str);
+	return (NULL);
+}

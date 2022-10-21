@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:59:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:09 by vimatheu         ###   ########.fr       */
+/*   Created: 2022/09/02 19:17:30 by vimatheu          #+#    #+#             */
+/*   Updated: 2022/09/02 20:08:31 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-int		read_file(char **aux_p, char **line_p, int fd);
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:59:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:09 by vimatheu         ###   ########.fr       */
+/*   Created: 2022/08/30 21:31:03 by vimatheu          #+#    #+#             */
+/*   Updated: 2022/08/31 00:47:49 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*mem;
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-int		read_file(char **aux_p, char **line_p, int fd);
-
-#endif
+	if (size > (~(1 << 31) / count))
+		return (NULL);
+	mem = malloc (size * count);
+	if (mem != NULL)
+		ft_bzero(mem, (count * size));
+	return (mem);
+}

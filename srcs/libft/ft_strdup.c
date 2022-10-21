@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:59:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:09 by vimatheu         ###   ########.fr       */
+/*   Created: 2022/08/30 21:24:54 by vimatheu          #+#    #+#             */
+/*   Updated: 2022/09/02 16:22:45 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+char	*ft_strdup(const char *s1)
+{
+	char	*dup;
+	int		i;
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-int		read_file(char **aux_p, char **line_p, int fd);
-
-#endif
+	dup = malloc ((ft_strlen(s1) + 1) * sizeof (char));
+	i = 0;
+	while (s1[i])
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}

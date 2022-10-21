@@ -6,13 +6,13 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/09/29 23:24:25 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 02:51:48 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
 
-void	create_map(void)
+int	main(void)
 {
 	t_map	map;
 
@@ -87,7 +87,7 @@ void	create_tunnels(t_map *tnmap)
 
 void	add_collectibles(t_map *map)
 {
-	int		rpos[2];
+	int	rpos[2];
 	int	col_added;
 
 	col_added = 0;

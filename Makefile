@@ -11,8 +11,9 @@ LXFLAGS = -lX11 -lXext -lmlx
 
 RM = rm -rf
 
-MGSRCS = $(addprefix $(SRCPATH)mapgen/,	main.c \
-										map_generator.c \
+SRCS = $(addprefix $(SRCPATH), so_long.c)
+
+MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )
 
 MVSRCS = $(addprefix $(SRCPATH)mapviz/,	map_visualizer.c \
@@ -20,17 +21,14 @@ MVSRCS = $(addprefix $(SRCPATH)mapviz/,	map_visualizer.c \
 
 all: $(NAME)
 
-$(NAME): $(MGNAME)
-	$(CC) $(CFLAGS) -I $(LIBPATH) $(SRCS) -g3 -o $@
+$(NAME): libft $(MGNAME)
+	$(CC) $(CFLAGS) -I $(LIBPATH) $(SRCS) libft.a -g3 -o $@
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
 
 $(MVNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MVSRCS) $(LXFLAGS) -g3 -o $@
-
-del: $(arg)
-	$(RM) $(arg)
 
 clean:
 	$(RM) *.o
@@ -41,10 +39,18 @@ fclean: clean
 	$(RM) $(MVNAME)
 	$(RM) $(NAME)
 
+libft:
+	cd srcs/libft/ && $(MAKE) && $(MAKE) clean
+	mv srcs/libft/libft.a .
+
 val:
 	valgrind ./$(arg) 2> leaks_$(arg).txt
 
 re: fclean all
+
+regen:
+	$(RM) $(MGNAME)
+	$(MAKE) $(MGNAME)
 
 git: fclean
 	git add .

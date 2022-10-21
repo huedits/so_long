@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:59:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 19:44:09 by vimatheu         ###   ########.fr       */
+/*   Created: 2022/08/30 19:46:06 by vimatheu          #+#    #+#             */
+/*   Updated: 2022/08/31 19:18:26 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char	*dest;
+	char	*source;
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-int		read_file(char **aux_p, char **line_p, int fd);
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	if (src < dst && (src + len) > dst)
+	{
+		source = (char *) src;
+		dest = (char *) dst;
+		while (len > 0)
+		{
+			dest[len - 1] = source[len - 1];
+			len--;
+		}
+	}
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
+}

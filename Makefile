@@ -31,8 +31,8 @@ clean:
 
 fclean: clean
 	$(RM) $(MGNAME)
-	$(RM) $(MVNAME)
 	$(RM) $(NAME)
+	$(RM) libft.a
 
 libft:
 	cd srcs/libft/ && $(MAKE) && $(MAKE) clean

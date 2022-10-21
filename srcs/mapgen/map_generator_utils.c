@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:06:00 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/20 22:21:17 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 03:15:54 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,30 @@ void	write_hwall(int fd, int size, int final)
 		write(fd, "\n", 1);
 }
 
-void	get_random_dir(int *new_dir)
+void	get_random_dir(int *new_dir, int *last_dir)
 {
 	int	random_dir;
 
 	random_dir = random() % 4;
 	if (random_dir == 0)
-		*new_dir = -1;
+		new_dir[0] = -1;
 	else if (random_dir == 1)
-		*new_dir = 1;
+		new_dir[0] = 1;
 	else if (random_dir == 2)
-		*new_dir = 0;
+		new_dir[0] = 0;
 	else if (random_dir == 3)
-		*new_dir = 0;
-	new_dir++;
+		new_dir[0] = 0;
 	if (random_dir == 0)
-		*new_dir = 0;
+		new_dir[1] = 0;
 	else if (random_dir == 1)
-		*new_dir = 0;
+		new_dir[1] = 0;
 	else if (random_dir == 2)
-		*new_dir = -1;
+		new_dir[1] = -1;
 	else if (random_dir == 3)
-		*new_dir = 1;
+		new_dir[1] = 1;
+	if ((new_dir[0] == -last_dir[0] && new_dir[1] == -last_dir[1])
+		|| (new_dir[0] == last_dir[0] && new_dir[1] == last_dir[1]))
+		get_random_dir(new_dir, last_dir);
 }
 
 void	new_tunnel(t_map *map, int *rdir, int *cpos)

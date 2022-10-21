@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/21 02:51:48 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 03:16:29 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ void	create_tunnels(t_map *tnmap)
 	tnmap->array[cpos[0]][cpos[1]] = 'P';
 	while (tnmap->max_tunnels > 0)
 	{
-		get_random_dir(&rdir[0]);
-		while ((rdir[0] == -ldir[0] && rdir[1] == -ldir[1])
-			|| (rdir[0] == ldir[0] && rdir[1] == ldir[1]))
-			get_random_dir(&rdir[0]);
+		get_random_dir(rdir, ldir);
 		new_tunnel(tnmap, rdir, cpos);
 		ldir[0] = rdir[0];
 		ldir[1] = rdir[1];
 		tnmap->max_tunnels--;
 	}
-	if (tnmap->array[cpos[0]][cpos[1]] == '1'
-		|| tnmap->array[cpos[0]][cpos[1]] == '0')
-		tnmap->array[cpos[0]][cpos[1]] = 'E';
+	if (tnmap->array[cpos[0]][cpos[1]] == 'P')
+	{
+		get_random_dir(rdir, ldir);
+		new_tunnel(tnmap, rdir, cpos);
+	}
+	tnmap->array[cpos[0]][cpos[1]] = 'E';
 }
 
 void	add_collectibles(t_map *map)

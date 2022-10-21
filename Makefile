@@ -10,7 +10,9 @@ LXFLAGS = -lX11 -lXext -lmlx
 
 RM = rm -rf
 
-SRCS = $(addprefix $(SRCPATH), so_long.c)
+SRCS = $(addprefix $(SRCPATH), 	so_long.c \
+								so_long_utils.c \
+								map_validation.c )
 
 MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )
@@ -18,12 +20,11 @@ MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 all: $(NAME)
 
 $(NAME): libft $(MGNAME)
-	$(CC) $(CFLAGS) -I $(LIBPATH) $(SRCS) libft.a -g3 -o $@
+	$(CC) $(CFLAGS) $(LXFLAGS) -I $(LIBPATH) $(SRCS) libft.a -g3 -o $@
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
 	./mapgen
-
 
 clean:
 	$(RM) *.o

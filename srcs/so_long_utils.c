@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:22:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/21 21:51:21 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:17:46 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	generate_map(void)
 		wait(NULL);
 }
 
-void	write_array(t_map *map)
+void	get_map(t_map *map)
 {
 	char	*mapstr;
 	int		i;
@@ -60,15 +60,14 @@ void	write_array(t_map *map)
 		i++;
 	}
 	if (ft_strccount(mapstr, 'E') != 1 || ft_strccount(mapstr, 'P') != 1)
-		{
-			write(1, "Error\nInvalid number of exit/spawn.\n", 36);
-			free(map->name);
-			free(mapstr);
-			exit(EXIT_FAILURE);
-		}
+	{
+		write(1, "Error\nInvalid number of exit/spawn.\n", 36);
+		free(map->name);
+		free(mapstr);
+		exit(EXIT_FAILURE);
+	}
 	map->coins = ft_strccount(mapstr, 'C');
-	map->array = ft_split(mapstr, "\n");
-	get_player_pos(map);
+	map->array = ft_split(mapstr, '\n');
 }
 
 char	*read_map(t_map	*map)
@@ -81,7 +80,7 @@ char	*read_map(t_map	*map)
 	fd = open(map->name, O_RDONLY);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
-	aux = (char *) ft_calloc (1,1);
+	aux = (char *) ft_calloc(1, 1);
 	buf = get_next_line(fd);
 	map->width = ft_strlen(buf);
 	map->height = 0;

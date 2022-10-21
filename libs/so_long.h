@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/21 21:17:47 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:14:11 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ typedef struct s_game
 	int			status;
 }	t_game;
 
+void	free_map(t_map *map);
 void	generate_map(void);
+void	get_map(t_map *map);
 char	*read_map(t_map	*map);
-void	write_array(t_map *map);
+void	get_player_pos(t_map *map);
+void	is_valid(t_map *map);
+void	is_rectangular(t_map *map);
+void	check_borders(t_map *map);
+void	check_path(t_map *map);
 
 #endif

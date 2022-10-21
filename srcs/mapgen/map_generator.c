@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:05:58 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/21 03:16:29 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/21 03:37:38 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	write_map(t_map *map)
 	int	i;
 	int	j;
 
-	fd = open("map", O_RDWR | O_CREAT | O_TRUNC, 0664);
+	fd = open("map.ber", O_RDWR | O_CREAT | O_TRUNC, 0664);
 	write_hwall(fd, (map->width + 2), 0);
 	i = 0;
 	while (i < map->height)

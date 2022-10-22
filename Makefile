@@ -12,7 +12,8 @@ RM = rm -rf
 
 SRCS = $(addprefix $(SRCPATH), 	so_long.c \
 								so_long_utils.c \
-								map_validation.c )
+								map_validation.c \
+								map_validation_2.c )
 
 MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )
@@ -36,8 +37,10 @@ fclean: clean
 	$(RM) libft.a
 
 libft:
-	cd srcs/libft/ && $(MAKE) && $(MAKE) clean
-	mv srcs/libft/libft.a .
+ifeq (,$(wildcard ./libft.a))
+	cd libft/ && $(MAKE) all && $(MAKE) clean
+	mv libft/libft.a .
+endif
 
 val:
 	valgrind ./$(arg) 2> leaks_$(arg).txt
@@ -53,3 +56,5 @@ git: fclean
 	sleep 5
 	git commit -m "Automatic commit from Makefile"
 	git push
+
+.PHONY: all $(NAME) $(MGNAME) clean fclean re regen git val libft

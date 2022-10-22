@@ -30,7 +30,7 @@ clean:
 	$(REMOVE) $(OBJS) $(B_OBJS)
 
 %.o: %.c
-	gcc -I ../../libs -c $(FLAGS) $< -o $@
+	gcc -I ../libs -c $(FLAGS) $< -o $@
 	ar -rcs $(NAME) $@
 
 fclean: clean

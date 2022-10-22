@@ -6,13 +6,13 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:22:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/21 22:17:46 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:50:04 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(t_map *map)
+void	free_map(t_map *map, int all)
 {
 	int	i;
 
@@ -20,7 +20,8 @@ void	free_map(t_map *map)
 	while (i < map->height)
 		free(map->array[i]);
 	free(map->array);
-	free(map->name);
+	if (all == 1)
+		free(map->name);
 }
 
 void	generate_map(void)
@@ -29,14 +30,7 @@ void	generate_map(void)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		if (access("mapgen", X_OK) == 0)
-			execl("mapgen", "mapgen", NULL);
-		else
-		{
-			execl("mapgen", "mapgen", NULL);
-		}
-	}
+		execlp("make", "make", "regen", NULL);
 	else
 		wait(NULL);
 }
@@ -44,30 +38,11 @@ void	generate_map(void)
 void	get_map(t_map *map)
 {
 	char	*mapstr;
-	int		i;
 
 	mapstr = read_map(map);
-	i = 0;
-	while (mapstr[i])
-	{
-		if (!ft_strchr("10PENC\n", mapstr[i]))
-		{
-			write(1, "Error\nMap contains invalid element.\n", 36);
-			free(map->name);
-			free(mapstr);
-			exit(EXIT_FAILURE);
-		}
-		i++;
-	}
-	if (ft_strccount(mapstr, 'E') != 1 || ft_strccount(mapstr, 'P') != 1)
-	{
-		write(1, "Error\nInvalid number of exit/spawn.\n", 36);
-		free(map->name);
-		free(mapstr);
-		exit(EXIT_FAILURE);
-	}
-	map->coins = ft_strccount(mapstr, 'C');
+	map->coins = check_mapstr(map, mapstr);
 	map->array = ft_split(mapstr, '\n');
+	free(mapstr);
 }
 
 char	*read_map(t_map	*map)
@@ -82,7 +57,7 @@ char	*read_map(t_map	*map)
 		exit(EXIT_FAILURE);
 	aux = (char *) ft_calloc(1, 1);
 	buf = get_next_line(fd);
-	map->width = ft_strlen(buf);
+	map->width = ft_strlen(buf) - 1;
 	map->height = 0;
 	while (buf)
 	{

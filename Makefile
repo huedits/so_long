@@ -43,7 +43,7 @@ ifeq (,$(wildcard ./libft.a))
 endif
 
 val:
-	valgrind ./$(arg) 2> leaks_$(arg).txt
+	valgrind --leak-check=full ./$(arg) 2> leaks_$(arg).txt
 
 re: fclean all
 

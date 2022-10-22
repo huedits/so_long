@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:22:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 21:48:23 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 22:45:33 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_map(t_map *map, int all)
 	int	i;
 
 	i = 0;
-	while (i < map->height - 1)
+	while (i < map->height)
 	{
 		free(map->array[i]);
 		i++;

@@ -7,16 +7,21 @@ And thanks for all the fish
 
 ### Content
 ```diff
-- Early development stage.
+- Not finished.
 ```
-**Source files:** \
-[map_generator.c](srcs/map_generator.c)
-| [map_generator_utils.c](srcs/map_generator_utils.c)
+- [x] Map generator (Bonus) - [map_generator.h](libs/map_generator.h) | [map_generator.c](srcs/map_generator.c) | [map_generator_utils.c](srcs/map_generator_utils.c)
+- [x] Map validation
+- [ ] Graphics (MiniLibX)
+- [ ] Gameplay
+- [ ] Animation (Bonus)
 
-**Header File:** \
-[map_generator.h](libs/map_generator.h)
+**Source files:** 
 
-**Makefile:**
+
+**Header Files:** 
+
+
+**[Makefile](Makefile)**
 
 ## Test results
 

@@ -6,13 +6,13 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:20:01 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 18:44:03 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 21:53:27 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		check_mapstr(t_map *map, char *str)
+int	check_mapstr(t_map *map, char *str)
 {
 	int	i;
 	int	coins;
@@ -22,10 +22,9 @@ int		check_mapstr(t_map *map, char *str)
 	{
 		if (!ft_strchr("10PENC\n", str[i]))
 		{
-			write(1, "Error\nMap contains invalid element.\n", 36);
-			free(map->name);
 			free(str);
-			exit(EXIT_FAILURE);
+			free(map->name);
+			exit_error("Error\nMap contains invalid element.\n", map, 0);
 		}
 		i++;
 	}
@@ -33,15 +32,14 @@ int		check_mapstr(t_map *map, char *str)
 	if (ft_strccount(str, 'E') != 1 || ft_strccount(str, 'P') != 1
 		|| coins < 1)
 	{
-		write(1, "Error\nInvalid number of exit/spawn/collectibles.\n", 49);
 		free(map->name);
 		free(str);
-		exit(EXIT_FAILURE);
+		exit_error("Error\nInvalid number of exit/spawn/collectibles.\n", map, 0);
 	}
 	return (coins);
 }
 
-int		get_next_path(t_map *mp, int y, int x)
+int	get_next_path(t_map *mp, int x, int y)
 {
 	if (mp->array[y][x] != '1' && mp->array[y][x] != 'X'
 		&& mp->array[y][x] != 'N')
@@ -49,7 +47,7 @@ int		get_next_path(t_map *mp, int y, int x)
 	return (0);
 }
 
-int		check_path(t_map *map, int x, int y)
+int	check_path(t_map *map, int x, int y)
 {
 	if (map->array[y][x] == 'C' || map->array[y][x] == 'E')
 		map->coins--;
@@ -63,6 +61,14 @@ int		check_path(t_map *map, int x, int y)
 	if (get_next_path(map, x + 1, y) && map->coins > -1)
 		check_path(map, x + 1, y);
 	return (map->coins);
+}
+
+void	exit_error(char *str, t_map *map, int nf)
+{
+	write(1, str, ft_strlen(str));
+	if (nf == 1)
+		free_map(map, 1);
+	exit(EXIT_FAILURE);
 }
 
 void	print_map_info(t_map *map)

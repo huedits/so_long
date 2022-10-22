@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:22:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 18:50:04 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 21:48:23 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	free_map(t_map *map, int all)
 	int	i;
 
 	i = 0;
-	while (i < map->height)
+	while (i < map->height - 1)
+	{
 		free(map->array[i]);
+		i++;
+	}
 	free(map->array);
 	if (all == 1)
 		free(map->name);
@@ -38,10 +41,15 @@ void	generate_map(void)
 void	get_map(t_map *map)
 {
 	char	*mapstr;
+	char	*aux;
 
-	mapstr = read_map(map);
+	aux = read_map(map);
+	mapstr = ft_strtrim(aux, "\n");
+	free(aux);
 	map->coins = check_mapstr(map, mapstr);
 	map->array = ft_split(mapstr, '\n');
+	map->width = ft_strlen(map->array[0]);
+	map->height = ft_strccount(mapstr, '\n') + 1;
 	free(mapstr);
 }
 
@@ -54,17 +62,14 @@ char	*read_map(t_map	*map)
 
 	fd = open(map->name, O_RDONLY);
 	if (fd == -1)
-		exit(EXIT_FAILURE);
+		exit_error("Error\nCouldn't read map.\n", map, 0);
 	aux = (char *) ft_calloc(1, 1);
 	buf = get_next_line(fd);
-	map->width = ft_strlen(buf) - 1;
-	map->height = 0;
 	while (buf)
 	{
 		join = ft_strjoin(aux, buf);
 		free(aux);
 		free(buf);
-		map->height++;
 		buf = get_next_line(fd);
 		aux = join;
 	}
@@ -80,11 +85,11 @@ void	get_player_pos(t_map *map)
 	int	found;
 
 	found = 0;
-	i = 0;
-	while (i < map->height && found == 0)
+	i = 1;
+	while (i < map->height - 1 && found == 0)
 	{
-		j = 0;
-		while (j < map->width && found == 0)
+		j = 1;
+		while (j < map->width - 1 && found == 0)
 		{
 			if (map->array[i][j] == 'P')
 			{

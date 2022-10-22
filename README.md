@@ -15,14 +15,13 @@ And thanks for all the fish
 - [ ] Gameplay
 - [ ] Animation (Bonus)
 
-**Source files:** \
+**Source files:** 
 
 
-**Header File:** \
+**Header Files:** 
 
 
-**Makefile:** \
-[Makefile](Makefile)
+**[Makefile](Makefile)**
 
 ## Test results
 

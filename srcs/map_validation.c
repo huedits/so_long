@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:25:31 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 19:19:34 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 19:36:39 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ void	check_borders(t_map *map)
 	i = 1;
 	while (i < map->height - 2 && is_valid == 1)
 	{
-		printf("i = %d | array[%d][0] = %c | array[%d][%d] = %c\n",
-			i, i, map->array[i][0], i, map->width - 1, map->array[i][map->width - 1]);
+		printf("array[%d]: %s\n", i, map->array[i]);
+		printf("array[%d][0] = %c | array[%d][%d] = %c\n",
+			i, map->array[i][0], i, map->width - 1, map->array[i][map->width - 1]);
 		fflush(stdout);
 		if (map->array[i][0] != '1' || map->array[i][map->width - 1] != '1')
 			is_valid = 0;

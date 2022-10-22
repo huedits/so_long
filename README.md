@@ -9,18 +9,17 @@ And thanks for all the fish
 ```diff
 - Not finished.
 ```
-- [x] Map generator (Bonus)
+- [x] Map generator (Bonus) - [map_generator.h](libs/map_generator.h) | [map_generator.c](srcs/map_generator.c) | [map_generator_utils.c](srcs/map_generator_utils.c)
 - [x] Map validation
 - [ ] Graphics (MiniLibX)
 - [ ] Gameplay
 - [ ] Animation (Bonus)
 
 **Source files:** \
-[map_generator.c](srcs/map_generator.c)
-| [map_generator_utils.c](srcs/map_generator_utils.c)
+
 
 **Header File:** \
-[map_generator.h](libs/map_generator.h)
+
 
 **Makefile:** \
 [Makefile](Makefile)

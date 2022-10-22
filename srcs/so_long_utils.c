@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:22:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 22:45:33 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/10/22 23:30:48 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ char	*read_map(t_map	*map)
 
 	fd = open(map->name, O_RDONLY);
 	if (fd == -1)
+	{
+		free(map->name);
 		exit_error("Error\nCouldn't read map.\n", map, 0);
+	}
 	aux = (char *) ft_calloc(1, 1);
 	buf = get_next_line(fd);
 	while (buf)

@@ -1,5 +1,8 @@
 # so_long
-And thanks for all the fish
+<p align="center"><i>And thanks for all the fish.</i></p><br/>
+This project is a very small 2D game.
+Its purpose is to make you work with textures, sprites,
+and some other very basic gameplay elements.</p>
 
 <img src="https://game.42sp.org.br/static/assets/achievements/so_longn.png" align="right">
 

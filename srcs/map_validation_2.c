@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:20:01 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 21:53:27 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:23:40 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,4 @@ void	exit_error(char *str, t_map *map, int nf)
 	if (nf == 1)
 		free_map(map, 1);
 	exit(EXIT_FAILURE);
-}
-
-void	print_map_info(t_map *map)
-{
-	int i, j;
-	
-	printf("map->name: %s\n", map->name);
-	printf("Width: %d | Height: %d | Coins: %d\n\nArray:\n", map->width, map->height, map->coins);
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			printf("%c", map->array[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\nP: [%d][%d]\n", map->p_y, map->p_x);
 }

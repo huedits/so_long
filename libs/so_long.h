@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 19:07:20 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:23:19 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	check_borders(t_map *map);
 int		check_path(t_map *map, int x, int y);
 int		get_next_path(t_map *mp, int y, int x);
 int		check_mapstr(t_map *map, char *str);
-void	print_map_info(t_map *map);
 void	exit_error(char *str, t_map *map, int nf);
 
 ///////////////////////////////////////////////////////

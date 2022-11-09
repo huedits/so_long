@@ -6,18 +6,18 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 19:08:03 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:24:09 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void create_handlers(t_game *game)
+void	create_handlers(t_game *game)
 {
 	mlx_loop_hook(game->data.mlx_ptr, &handle_no_event, &game->data);
-	mlx_hook(game->data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, 
+	mlx_hook(game->data.win_ptr, KeyPress, KeyPressMask, &handle_keypress,
 		game);
-	mlx_hook(game->data.win_ptr, DestroyNotify, StructureNotifyMask, 
+	mlx_hook(game->data.win_ptr, DestroyNotify, StructureNotifyMask,
 		&handle_x_pressed, &game->data);
 }
 
@@ -27,9 +27,9 @@ int	handle_no_event(t_game *game)
 	if (game->status == 'p')
 		render_map(game);
 	if (game->status == 'd')
-		; //show_dead
+		;
 	if (game->status == 'w')
-		; //show_win
+		;
 	return (0);
 }
 

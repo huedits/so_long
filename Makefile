@@ -3,6 +3,7 @@ MGNAME = mapgen
 
 LIBPATH = ./libs/
 SRCPATH = ./srcs/
+FTPATH = ./libft/libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -13,15 +14,16 @@ RM = rm -rf
 SRCS = $(addprefix $(SRCPATH), 	so_long.c \
 								so_long_utils.c \
 								map_validation.c \
-								map_validation_2.c )
+								map_validation_2.c \
+								handlers.c )
 
 MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )
 
 all: $(NAME)
 
-$(NAME): libft $(MGNAME)
-	$(CC) $(CFLAGS) $(LXFLAGS) -I $(LIBPATH) $(SRCS) libft.a -g3 -o $@
+$(NAME): $(FTPATH) $(MGNAME)
+	$(CC) $(CFLAGS) $(LXFLAGS) -I $(LIBPATH) $(SRCS) $(FTPATH) -g3 -o $@
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
@@ -34,13 +36,10 @@ clean:
 fclean: clean
 	$(RM) $(MGNAME)
 	$(RM) $(NAME)
-	$(RM) libft.a
+	$(RM) $(FTPATH)
 
-libft:
-ifeq (,$(wildcard ./libft.a))
-	cd libft/ && $(MAKE) all && $(MAKE) clean
-	mv libft/libft.a .
-endif
+$(FTPATH):
+	$(MAKE) all -C ./libft/ && $(MAKE) clean -C ./libft/
 
 val:
 	valgrind --leak-check=full ./$(arg) 2> leaks_$(arg).txt

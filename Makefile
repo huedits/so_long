@@ -15,7 +15,8 @@ SRCS = $(addprefix $(SRCPATH), 	so_long.c \
 								so_long_utils.c \
 								map_validation.c \
 								map_validation_2.c \
-								handlers.c )
+								handlers.c \
+								game.c )
 
 MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 										map_generator_utils.c )

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/31 23:30:49 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:46:59 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # define WWIDTH 900
 # define WHEIGHT 700
 # define MLX_ERROR 1
+# define PWALL "/srcs/sprites/wall.png"
+# define PFLOOR "/srcs/sprites/floor.png"
+# define PKNIGHT "/srcs/sprites/knight.png"
+# define PSLIME "/srcs/sprites/slime.png"
+# define PCDOOR "/srcs/sprites/door_closed.png"
+# define PODOOR "/srcs/sprites/door_open.png"
+# define PKEY "/srcs/sprites/key.png"
 
 # include "get_next_line.h"
 # include <stdio.h>
@@ -37,7 +44,6 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
 }	t_data;
 
 typedef struct s_map
@@ -56,7 +62,7 @@ typedef struct s_game
 	t_map		map;
 	t_data		data;
 	size_t		steps;
-	int			status;
+	char		status;
 }	t_game;
 
 ///////////////////////////////////////////////////////
@@ -89,9 +95,15 @@ void	render_background(t_img *img, int color);
 ///////////////////// Handlers ////////////////////////
 ///////////////////////////////////////////////////////
 
-int		handle_no_event(t_data *data);
-int		handle_keypress(int keysym, t_data *data);
-int		handle_x_pressed(t_data *data);
-void	create_handlers(t_data *data);
+int		handle_no_event(t_game *game);
+int		handle_keypress(t_game *game, int keysym, t_data *data);
+int		handle_x_pressed(t_game *game);
+void	create_handlers(t_game *game);
+
+///////////////////////////////////////////////////////
+///////////////////// Gameplay ////////////////////////
+///////////////////////////////////////////////////////
+
+void	check_new_pos(t_game *g, int new_x, int new_y);
 
 #endif

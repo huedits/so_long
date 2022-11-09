@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 18:20:25 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:08:03 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	handle_no_event(t_game *game)
 	if (game->status == 'p')
 		render_map(game);
 	if (game->status == 'd')
-		//show_dead
+		; //show_dead
 	if (game->status == 'w')
-		//show_win
+		; //show_win
 	return (0);
 }
 

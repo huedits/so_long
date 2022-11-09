@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 18:44:28 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:03:30 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	render_background(t_data *data)
 	{
 		j = 0;
 		while (j <= WWIDTH)
-			img_pix_put(data->mlx_ptr, data->win_ptr, j++, i, 0x0);
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x0);
 		++i;
 	}
 }
@@ -52,7 +52,6 @@ void	render_map(t_game *g)
 {
 	int		i;
 	int		j;
-	char	*img;
 
 	i = 0;
 	while (i < g->map.height)
@@ -69,20 +68,25 @@ void	render_map(t_game *g)
 
 void	print_img_from_map(t_game *g, int x, int y)
 {
-	mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PFLOOR
-		x * 16, y * 16);
+	int	wsx;
+	int	wsy;
+
+	wsx = (WWIDTH / 2) - ((g->map.width * 16) / 2);
+	wsy = (WHEIGHT / 2) - ((g->map.height * 16) / 2);
+	mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PFLOOR,
+		wsx + (x * 16), wsy + (y * 16));
 	if (g->map.array[y][x] == '1')
-		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PWALL
-			x * 16, y * 16);
+		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PWALL,
+			wsx + (x * 16), wsy + (y * 16));
 	if (g->map.array[y][x] == 'E' && g->map.coins > 0)
-		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PCDOOR
-			x * 16, y * 16);
+		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PCDOOR,
+			wsx + (x * 16), wsy + (y * 16));
 	if (g->map.array[y][x] == 'E' && g->map.coins == 0)
-		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PODOOR
-			x * 16, y * 16);
+		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PODOOR,
+			wsx + (x * 16), wsy + (y * 16));
 	if (g->map.array[y][x] == 'C')
-		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PKEY
-			x * 16, y * 16);
-	mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PKNIGHT
-		g->map.p_x * 16, g->map.p_y * 16);
+		mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PKEY,
+			wsx + (x * 16), wsy + (y * 16));
+	mlx_put_image_to_window(g->data.mlx_ptr, g->data.win_ptr, PKNIGHT,
+		wsx + (g->map.p_x * 16), wsy + (g->map.p_y * 16));
 }

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 18:46:59 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:07:20 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
 
 typedef struct s_data
 {
@@ -88,8 +79,6 @@ void	exit_error(char *str, t_map *map, int nf);
 ///////////////////////////////////////////////////////
 
 int		init_window(t_data *data, char *win_name);
-void	img_pix_put(t_img *img, int x, int y, int color);
-void	render_background(t_img *img, int color);
 
 ///////////////////////////////////////////////////////
 ///////////////////// Handlers ////////////////////////
@@ -97,7 +86,7 @@ void	render_background(t_img *img, int color);
 
 int		handle_no_event(t_game *game);
 int		handle_keypress(t_game *game, int keysym, t_data *data);
-int		handle_x_pressed(t_game *game);
+int		handle_x_pressed(t_data *data);
 void	create_handlers(t_game *game);
 
 ///////////////////////////////////////////////////////
@@ -105,5 +94,8 @@ void	create_handlers(t_game *game);
 ///////////////////////////////////////////////////////
 
 void	check_new_pos(t_game *g, int new_x, int new_y);
+void	render_background(t_data *data);
+void	render_map(t_game *g);
+void	print_img_from_map(t_game *g, int x, int y);
 
 #endif

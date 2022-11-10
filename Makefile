@@ -24,7 +24,7 @@ MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 all: $(NAME)
 
 $(NAME): $(FTPATH) $(MGNAME)
-	$(CC) $(CFLAGS) $(LXFLAGS) -I $(LIBPATH) $(SRCS) $(FTPATH) -g3 -o $@
+	$(CC) -I $(LIBPATH) $(SRCS) $(FTPATH) -g3 -o $@ $(CFLAGS) $(LXFLAGS)
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@

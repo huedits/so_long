@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 19:22:32 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/10 00:13:22 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	render_background(t_data *data)
 	{
 		j = 0;
 		while (j <= WWIDTH)
+		{
+			printf("X: %d | Y: %d\n", j, i);
+			fflush(stdout);
 			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x0);
+		}
 		++i;
 	}
 }

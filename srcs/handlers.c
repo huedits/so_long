@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 19:24:09 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/10 00:14:38 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@ void	create_handlers(t_game *game)
 
 int	handle_no_event(t_game *game)
 {
+	char *sstring;
+	
 	render_background(&game->data);
+	sstring = ft_itoa(game->steps);
+	mlx_string_put(game->data.mlx_ptr, game->data.win_ptr, 3, 3, 0xFFFFFF, "Steps: ");
+	mlx_string_put(game->data.mlx_ptr, game->data.win_ptr, 15, 3, 0xFFFFFF, sstring);
+	free(sstring);
 	if (game->status == 'p')
 		render_map(game);
 	if (game->status == 'd')

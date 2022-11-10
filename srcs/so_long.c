@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/09 19:23:25 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/10 01:03:29 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ int	main(int argc, char *argv[])
 	game.map.name = ft_strtrim(argv[1], " ");
 	is_valid(&game.map);
 	if (init_window(&game.data, ft_strjoin("so_long -> ", game.map.name)))
+	{
 		free_map(&game.map, 1);
+		free(game.data.mlx_ptr);
+		return (0);
+	}
 	game.status = 'p';
 	create_handlers(&game);
 	mlx_loop(game.data.mlx_ptr);

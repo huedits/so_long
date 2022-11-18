@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:12:24 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:25:07 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,14 @@ int	handle_no_event(t_game *game)
 		img_sprite_put(&game->data.img, game->sprites.knight,
 			game->map.p_x * 16, game->map.p_y * 16);
 		mlx_put_image_to_window(game->data.mlx, game->data.win,
-			game->data.img.mlx_img, 50, 50);
+			game->data.img.mlx_img, 100, 100);
 	}
 	if (game->status == 'd')
-	{
-		render_map(game);
 		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
 			0xFFFFFF, "You are dead.");
-	}
 	if (game->status == 'w')
-	{
-		render_map(game);
 		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
 			0xFFFFFF, "You win!");
-	}
 	return (0);
 }
 

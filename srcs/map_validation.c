@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:25:31 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/10/22 21:31:54 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:55:20 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ void	is_valid(t_map *map)
 {
 	char	*ext;
 
-	ext = ft_substr(map->name, ft_strlen(map->name) - 4, 4);
-	if (ft_strncmp(ext, ".ber", 4))
+	if (ft_strlen(map->name) <= 4)
+	{
+		free(map->name);
+		exit_error("Error\nInvalid file extension.\n", map, 0);
+	}
+	ext = ft_substr(map->name, ft_strlen(map->name) - 5, 5);
+	if (ft_strncmp(ext + 1, ".ber", 4) || !ft_strncmp(ext, "/.ber", 5))
 	{
 		free(map->name);
 		free(ext);

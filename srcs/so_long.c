@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:22:48 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:24:21 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	init_window(t_data *data, char *win_name, int w, int h)
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (MLX_ERROR);
-	data->win = mlx_new_window(data->mlx, (w * 16) + 100, (h * 16) + 100,
+	data->win = mlx_new_window(data->mlx, (w * 16) + 200, (h * 16) + 200,
 		win_name);
 	free(win_name);
 	if (data->win == NULL)

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/10 00:14:38 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:12:24 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,44 @@
 
 void	create_handlers(t_game *game)
 {
-	mlx_loop_hook(game->data.mlx_ptr, &handle_no_event, &game->data);
-	mlx_hook(game->data.win_ptr, KeyPress, KeyPressMask, &handle_keypress,
+	mlx_loop_hook(game->data.mlx, &handle_no_event, game);
+	mlx_hook(game->data.win, KeyPress, KeyPressMask, &handle_keypress,
 		game);
-	mlx_hook(game->data.win_ptr, DestroyNotify, StructureNotifyMask,
+	mlx_hook(game->data.win, DestroyNotify, StructureNotifyMask,
 		&handle_x_pressed, &game->data);
 }
 
 int	handle_no_event(t_game *game)
-{
-	char *sstring;
-	
-	render_background(&game->data);
-	sstring = ft_itoa(game->steps);
-	mlx_string_put(game->data.mlx_ptr, game->data.win_ptr, 3, 3, 0xFFFFFF, "Steps: ");
-	mlx_string_put(game->data.mlx_ptr, game->data.win_ptr, 15, 3, 0xFFFFFF, sstring);
-	free(sstring);
+{	
 	if (game->status == 'p')
+	{
 		render_map(game);
+		img_sprite_put(&game->data.img, game->sprites.knight,
+			game->map.p_x * 16, game->map.p_y * 16);
+		mlx_put_image_to_window(game->data.mlx, game->data.win,
+			game->data.img.mlx_img, 50, 50);
+	}
 	if (game->status == 'd')
-		;
+	{
+		render_map(game);
+		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
+			0xFFFFFF, "You are dead.");
+	}
 	if (game->status == 'w')
-		;
+	{
+		render_map(game);
+		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
+			0xFFFFFF, "You win!");
+	}
 	return (0);
 }
 
-int	handle_keypress(t_game *game, int keysym, t_data *data)
+int	handle_keypress(t_game *game, int keysym)
 {
 	if (keysym == XK_Escape)
 	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
+		mlx_destroy_window(game->data.mlx, game->data.win);
+		game->data.win = NULL;
 	}
 	if (game->status == 'p')
 	{	
@@ -62,7 +69,7 @@ int	handle_keypress(t_game *game, int keysym, t_data *data)
 
 int	handle_x_pressed(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
+	mlx_destroy_window(data->mlx, data->win);
+	data->win = NULL;
 	return (0);
 }

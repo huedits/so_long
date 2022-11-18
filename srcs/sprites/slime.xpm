@@ -1,0 +1,28 @@
+/* XPM */
+static char *ba1d662d54e349b5c765bb948e26d393lKOmYNBysnmozSWa[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c black",
+"X c #33703B",
+"o c #37773F",
+"O c #3E8948",
+"+ c #62B76D",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"     ......     ",
+"   ..XOOOOX..   ",
+"  .XXOOOOOOXX.  ",
+" .XOOOOOOOOOOX. ",
+".XOO++OOOOOOOOX.",
+".OO++OOOOOOOOOO.",
+".OOOooooooo..OO.",
+".Ooooo..ooo..oO.",
+".Xoooo..ooooooX.",
+" .XXooooooooXX. ",
+"  ..XooooooX..  ",
+"    ........    ",
+"                "
+};

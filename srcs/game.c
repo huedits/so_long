@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:21:38 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:42:33 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	render_map(t_game *g)
 
 	render_background(&g->data, g->map.width, g->map.height);
 	sstring = ft_itoa(g->steps);
-	mlx_string_put(g->data.mlx, g->data.win, 3, 20, 0xFFFFFF, "Steps: ");
-	mlx_string_put(g->data.mlx, g->data.win, 15, 20, 0xFFFFFF, sstring);
+	mlx_string_put(g->data.mlx, g->data.win, 3, 25, 0xFFFFFF, "Steps: ");
+	mlx_string_put(g->data.mlx, g->data.win, 50, 25, 0xFFFFFF, sstring);
 	free(sstring);
 	i = 0;
 	while (i < g->map.height)
@@ -74,7 +74,7 @@ void	render_map(t_game *g)
 
 void	print_img_from_map(t_game *g, int x, int y)
 {
-	img_sprite_put(&g->data.img, g->sprites.floor, x * 16, y * 16);
+	/* img_sprite_put(&g->data.img, g->sprites.floor, x * 16, y * 16);
 	if (g->map.array[y][x] == '1')
 		img_sprite_put(&g->data.img, g->sprites.wall, x * 16, y * 16);
 	if (g->map.array[y][x] == 'E' && g->map.coins == 0)
@@ -82,7 +82,27 @@ void	print_img_from_map(t_game *g, int x, int y)
 	if (g->map.array[y][x] == 'C')
 		img_sprite_put(&g->data.img, g->sprites.key, x * 16, y * 16);
 	if (g->map.array[y][x] == 'N')
-		img_sprite_put(&g->data.img, g->sprites.slime, x * 16, y * 16);
+		img_sprite_put(&g->data.img, g->sprites.slime, x * 16, y * 16); */
+	mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.floor, 100 + (x * 16), 100 + (y * 16));
+	if (g->map.array[y][x] == '1')
+		mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.wall, 100 + (x * 16), 100 + (y * 16));
+	if (g->map.array[y][x] == 'E' && g->map.coins == 0)
+		mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.door, 100 + (x * 16), 100 + (y * 16));
+	if (g->map.array[y][x] == 'C')
+		mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.key, 100 + (x * 16), 100 + (y * 16));
+	if (g->map.array[y][x] == 'N')
+		mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.slime, 100 + (x * 16), 100 + (y * 16));
+	/* if (g)
+		;
+	if (x)
+		;
+	if (y)
+		; */
 }
 
 void	img_sprite_put(t_img *img, void *sprite, int x, int y)

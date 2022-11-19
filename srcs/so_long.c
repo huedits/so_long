@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:24:21 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:43:30 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	convert_sprites(t_sprites *spr, t_data *data)
 {
 	int	w;
 	int	h;
-	
+
 	spr->wall = mlx_xpm_file_to_image(data->mlx, PWALL, &w, &h);
 	spr->floor = mlx_xpm_file_to_image(data->mlx, PFLOOR, &w, &h);
 	spr->key = mlx_xpm_file_to_image(data->mlx, PKEY, &w, &h);

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:01:13 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:12:06 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		init_window(t_data *data, char *win_name, int w, int h);
 ///////////////////////////////////////////////////////
 
 int		handle_no_event(t_game *game);
-int		handle_keypress(t_game *game, int keysym);
+int		handle_keypress(int keysym, t_game *game);
 int		handle_x_pressed(t_data *data);
 void	create_handlers(t_game *game);
 

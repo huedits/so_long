@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/18 22:25:07 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:09:19 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	create_handlers(t_game *game)
 }
 
 int	handle_no_event(t_game *game)
-{	
+{
 	if (game->status == 'p')
 	{
 		render_map(game);
@@ -40,7 +40,7 @@ int	handle_no_event(t_game *game)
 	return (0);
 }
 
-int	handle_keypress(t_game *game, int keysym)
+int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 	{

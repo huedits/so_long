@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/19 02:09:19 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/12/13 22:05:35 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,10 @@
 
 void	create_handlers(t_game *game)
 {
-	mlx_loop_hook(game->data.mlx, &handle_no_event, game);
 	mlx_hook(game->data.win, KeyPress, KeyPressMask, &handle_keypress,
 		game);
 	mlx_hook(game->data.win, DestroyNotify, StructureNotifyMask,
 		&handle_x_pressed, &game->data);
-}
-
-int	handle_no_event(t_game *game)
-{
-	if (game->status == 'p')
-	{
-		render_map(game);
-		img_sprite_put(&game->data.img, game->sprites.knight,
-			game->map.p_x * 16, game->map.p_y * 16);
-		mlx_put_image_to_window(game->data.mlx, game->data.win,
-			game->data.img.mlx_img, 100, 100);
-	}
-	if (game->status == 'd')
-		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
-			0xFFFFFF, "You are dead.");
-	if (game->status == 'w')
-		mlx_string_put(game->data.mlx, game->data.win, 3, 5,
-			0xFFFFFF, "You win!");
-	return (0);
 }
 
 int	handle_keypress(int keysym, t_game *game)

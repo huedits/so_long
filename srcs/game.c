@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/19 02:42:33 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/12/13 22:07:15 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_new_pos(t_game *g, int new_x, int new_y)
 	g->steps++;
 	if (g->map.array[new_y][new_x] == 'E' && g->map.coins == 0)
 		g->status = 'w';
+	render_map(g);
 }
 
 void	render_background(t_data *data, int w, int h)
@@ -70,19 +71,16 @@ void	render_map(t_game *g)
 		}
 		i++;
 	}
+	if (g->status == 'd')
+		mlx_string_put(g->data.mlx, g->data.win, 3, 5,
+			0xFFFFFF, "You are dead.");
+	if (g->status == 'w')
+		mlx_string_put(g->data.mlx, g->data.win, 3, 5,
+			0xFFFFFF, "You win!");
 }
 
 void	print_img_from_map(t_game *g, int x, int y)
 {
-	/* img_sprite_put(&g->data.img, g->sprites.floor, x * 16, y * 16);
-	if (g->map.array[y][x] == '1')
-		img_sprite_put(&g->data.img, g->sprites.wall, x * 16, y * 16);
-	if (g->map.array[y][x] == 'E' && g->map.coins == 0)
-		img_sprite_put(&g->data.img, g->sprites.door, x * 16, y * 16);
-	if (g->map.array[y][x] == 'C')
-		img_sprite_put(&g->data.img, g->sprites.key, x * 16, y * 16);
-	if (g->map.array[y][x] == 'N')
-		img_sprite_put(&g->data.img, g->sprites.slime, x * 16, y * 16); */
 	mlx_put_image_to_window(g->data.mlx, g->data.win, \
 			g->sprites.floor, 100 + (x * 16), 100 + (y * 16));
 	if (g->map.array[y][x] == '1')
@@ -97,12 +95,6 @@ void	print_img_from_map(t_game *g, int x, int y)
 	if (g->map.array[y][x] == 'N')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
 			g->sprites.slime, 100 + (x * 16), 100 + (y * 16));
-	/* if (g)
-		;
-	if (x)
-		;
-	if (y)
-		; */
 }
 
 void	img_sprite_put(t_img *img, void *sprite, int x, int y)

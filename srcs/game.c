@@ -72,10 +72,10 @@ void	render_map(t_game *g)
 		i++;
 	}
 	if (g->status == 'd')
-		mlx_string_put(g->data.mlx, g->data.win, 3, 5,
+		mlx_string_put(g->data.mlx, g->data.win, 3, 5, \
 			0xFFFFFF, "You are dead.");
 	if (g->status == 'w')
-		mlx_string_put(g->data.mlx, g->data.win, 3, 5,
+		mlx_string_put(g->data.mlx, g->data.win, 3, 5, \
 			0xFFFFFF, "You win!");
 }
 
@@ -95,17 +95,4 @@ void	print_img_from_map(t_game *g, int x, int y)
 	if (g->map.array[y][x] == 'N')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
 			g->sprites.slime, 100 + (x * 16), 100 + (y * 16));
-}
-
-void	img_sprite_put(t_img *img, void *sprite, int x, int y)
-{
-	char	*pixel;
-	char	*csprite;
-	int		i;
-
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	csprite = (char *) sprite;
-	while (*csprite)
-		*pixel++ = *csprite++;
 }

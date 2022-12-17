@@ -114,6 +114,5 @@ void	render_background(t_data *data, int w, int h);
 void	render_map(t_game *g);
 void	print_img_from_map(t_game *g, int x, int y);
 void	convert_sprites(t_sprites *spr, t_data *data);
-void	img_sprite_put(t_img *img, void *sprite, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/11/19 02:43:30 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:13:33 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char *argv[])
 	}
 	game.status = 'p';
 	create_handlers(&game);
+	render_map(&game);
 	mlx_loop(game.data.mlx);
 	mlx_destroy_display(game.data.mlx);
 	free(game.data.mlx);

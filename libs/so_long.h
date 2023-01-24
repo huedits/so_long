@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 22:05:55 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:49:20 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define SO_LONG_H
 
 # define MLX_ERROR 1
-# define PWALL "/srcs/sprites/wall.xpm"
-# define PFLOOR "/srcs/sprites/floor.xpm"
-# define PKNIGHT "/srcs/sprites/knight.xpm"
-# define PSLIME "/srcs/sprites/slime.xpm"
-# define PDOOR "/srcs/sprites/door.xpm"
-# define PKEY "/srcs/sprites/key.xpm"
+# define PWALL "srcs/sprites/wall.xpm"
+# define PFLOOR "srcs/sprites/floor.xpm"
+# define PKNIGHT "srcs/sprites/knight.xpm"
+# define PSLIME "srcs/sprites/slime.xpm"
+# define PDOOR "srcs/sprites/door.xpm"
+# define PKEY "srcs/sprites/key.xpm"
 
 # include "get_next_line.h"
 # include <stdio.h>
@@ -92,10 +92,11 @@ int		check_mapstr(t_map *map, char *str);
 void	exit_error(char *str, t_map *map, int nf);
 
 ///////////////////////////////////////////////////////
-//////////////////// Game Start ///////////////////////
+//////////////////// Game Status //////////////////////
 ///////////////////////////////////////////////////////
 
 int		init_window(t_data *data, char *win_name, int w, int h);
+int		end_game(t_game	*g);
 
 ///////////////////////////////////////////////////////
 ///////////////////// Handlers ////////////////////////

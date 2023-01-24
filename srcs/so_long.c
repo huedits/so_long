@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/24 23:13:33 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:42:18 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	main(int argc, char *argv[])
 	}
 	game.status = 'p';
 	create_handlers(&game);
+	convert_sprites(&game.sprites, &game.data);
 	render_map(&game);
 	mlx_loop(game.data.mlx);
-	mlx_destroy_display(game.data.mlx);
-	free(game.data.mlx);
-	free_map(&game.map, 1);
+	
+	
 }
 
 int	init_window(t_data *data, char *win_name, int w, int h)
@@ -61,9 +61,16 @@ void	convert_sprites(t_sprites *spr, t_data *data)
 	int	h;
 
 	spr->wall = mlx_xpm_file_to_image(data->mlx, PWALL, &w, &h);
+	printf("\nWall w: %d | h: %d", w, h);
 	spr->floor = mlx_xpm_file_to_image(data->mlx, PFLOOR, &w, &h);
+	printf("\nFloor w: %d | h: %d", w, h);
 	spr->key = mlx_xpm_file_to_image(data->mlx, PKEY, &w, &h);
+	printf("\nKey w: %d | h: %d", w, h);
 	spr->knight = mlx_xpm_file_to_image(data->mlx, PKNIGHT, &w, &h);
+	printf("\nKnight w: %d | h: %d", w, h);
 	spr->slime = mlx_xpm_file_to_image(data->mlx, PSLIME, &w, &h);
+	printf("\nSlime w: %d | h: %d", w, h);
 	spr->door = mlx_xpm_file_to_image(data->mlx, PDOOR, &w, &h);
+	printf("\nDoor w: %d | h: %d", w, h);
+	fflush(stdout);
 }

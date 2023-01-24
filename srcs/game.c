@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 22:07:15 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:50:47 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	render_map(t_game *g)
 	mlx_string_put(g->data.mlx, g->data.win, 50, 25, 0xFFFFFF, sstring);
 	free(sstring);
 	i = 0;
+	/* j = 0;
+	mlx_put_image_to_window(g->data.mlx, g->data.win, \
+			g->sprites.floor, 0, 0); */
 	while (i < g->map.height)
 	{
 		j = 0;
@@ -72,10 +75,10 @@ void	render_map(t_game *g)
 		i++;
 	}
 	if (g->status == 'd')
-		mlx_string_put(g->data.mlx, g->data.win, 3, 5, \
+		mlx_string_put(g->data.mlx, g->data.win, 3, 40, \
 			0xFFFFFF, "You are dead.");
 	if (g->status == 'w')
-		mlx_string_put(g->data.mlx, g->data.win, 3, 5, \
+		mlx_string_put(g->data.mlx, g->data.win, 3, 40, \
 			0xFFFFFF, "You win!");
 }
 
@@ -95,4 +98,19 @@ void	print_img_from_map(t_game *g, int x, int y)
 	if (g->map.array[y][x] == 'N')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
 			g->sprites.slime, 100 + (x * 16), 100 + (y * 16));
+}
+
+int	end_game(t_game	*g)
+{
+	mlx_destroy_image(g->data.mlx, g->sprites.wall);
+	mlx_destroy_image(g->data.mlx, g->sprites.floor);
+	mlx_destroy_image(g->data.mlx, g->sprites.key);
+	mlx_destroy_image(g->data.mlx, g->sprites.slime);
+	mlx_destroy_image(g->data.mlx, g->sprites.knight);
+	mlx_destroy_image(g->data.mlx, g->sprites.door);
+	//mlx_destroy_image(g->data.mlx, g->);
+	mlx_destroy_display(g->data.mlx);
+	free(g->data.mlx);
+	free_map(&g->map, 1);
+	return 0;
 }

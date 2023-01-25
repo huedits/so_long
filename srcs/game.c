@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:19:49 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/24 23:50:47 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:15:19 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	check_new_pos(t_game *g, int new_x, int new_y)
 		g->map.coins--;
 		g->map.array[new_y][new_x] = '0';
 	}
-	if (g->map.array[new_y][new_x] == '0' || g->map.array[new_y][new_x] == 'E')
+	if (g->map.array[new_y][new_x] == '0' || g->map.array[new_y][new_x] == 'E' \
+		|| g->map.array[new_y][new_x] == 'P')
 	{
 		g->map.p_x = new_x;
 		g->map.p_y = new_y;
@@ -36,15 +37,17 @@ void	check_new_pos(t_game *g, int new_x, int new_y)
 
 void	render_background(t_data *data, int w, int h)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i <= h + 100)
+	while (i <= (h * 32) + 100)
 	{
 		j = 0;
-		while (j <= w + 100)
-			mlx_pixel_put(data->mlx, data->win, j++, i, 0x0);
+		while (j <= (w * 32) + 100)
+			{
+				mlx_pixel_put(data->mlx, data->win, j++, i, 0x0);
+			}
 		++i;
 	}
 }
@@ -55,15 +58,13 @@ void	render_map(t_game *g)
 	int		j;
 	char 	*sstring;
 
+	//mlx_put_image_to_window(g->data.mlx, g->data.win, &g->sprites.bg, 0, 0);
 	render_background(&g->data, g->map.width, g->map.height);
 	sstring = ft_itoa(g->steps);
 	mlx_string_put(g->data.mlx, g->data.win, 3, 25, 0xFFFFFF, "Steps: ");
 	mlx_string_put(g->data.mlx, g->data.win, 50, 25, 0xFFFFFF, sstring);
 	free(sstring);
 	i = 0;
-	/* j = 0;
-	mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.floor, 0, 0); */
 	while (i < g->map.height)
 	{
 		j = 0;
@@ -84,20 +85,22 @@ void	render_map(t_game *g)
 
 void	print_img_from_map(t_game *g, int x, int y)
 {
-	mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.floor, 100 + (x * 16), 100 + (y * 16));
 	if (g->map.array[y][x] == '1')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.wall, 100 + (x * 16), 100 + (y * 16));
+			g->sprites.wall, 50 + (x * 32), 50 + (y * 32));
 	if (g->map.array[y][x] == 'E' && g->map.coins == 0)
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.door, 100 + (x * 16), 100 + (y * 16));
+			g->sprites.door, 50 + (x * 32), 50 + (y * 32));
 	if (g->map.array[y][x] == 'C')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.key, 100 + (x * 16), 100 + (y * 16));
+			g->sprites.key, 50 + (x * 32), 50 + (y * 32));
 	if (g->map.array[y][x] == 'N')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
-			g->sprites.slime, 100 + (x * 16), 100 + (y * 16));
+			g->sprites.slime, 50 + (x * 32), 50 + (y * 32));
+	if (!(g->map.array[g->map.p_y][g->map.p_x] == 'E' && g->map.coins == 0))
+		mlx_put_image_to_window(g->data.mlx, g->data.win, \
+				g->sprites.knight, 50 + (g->map.p_x * 32), \
+				50 + (g->map.p_y * 32));
 }
 
 int	end_game(t_game	*g)
@@ -108,9 +111,9 @@ int	end_game(t_game	*g)
 	mlx_destroy_image(g->data.mlx, g->sprites.slime);
 	mlx_destroy_image(g->data.mlx, g->sprites.knight);
 	mlx_destroy_image(g->data.mlx, g->sprites.door);
-	//mlx_destroy_image(g->data.mlx, g->);
+	mlx_destroy_window(g->data.mlx, g->data.win);
 	mlx_destroy_display(g->data.mlx);
 	free(g->data.mlx);
 	free_map(&g->map, 1);
-	return 0;
+	exit(0);
 }

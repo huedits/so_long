@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 22:05:35 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/25 00:18:38 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ void	create_handlers(t_game *game)
 	mlx_hook(game->data.win, KeyPress, KeyPressMask, &handle_keypress,
 		game);
 	mlx_hook(game->data.win, DestroyNotify, StructureNotifyMask,
-		&handle_x_pressed, &game->data);
+		&handle_x_pressed, game);
 }
 
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
-	{
-		mlx_destroy_window(game->data.mlx, game->data.win);
-		game->data.win = NULL;
-	}
+		end_game(game);
 	if (game->status == 'p')
 	{	
 		if (keysym == XK_Left || keysym == XK_a || keysym == XK_A)
@@ -41,9 +38,7 @@ int	handle_keypress(int keysym, t_game *game)
 	return (0);
 }
 
-int	handle_x_pressed(t_data *data)
+int	handle_x_pressed(t_game *game)
 {
-	mlx_destroy_window(data->mlx, data->win);
-	data->win = NULL;
-	return (0);
+	return (end_game(game));
 }

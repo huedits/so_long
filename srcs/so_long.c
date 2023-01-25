@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:57 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/24 23:42:18 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:05:59 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ int	main(int argc, char *argv[])
 	}
 	game.status = 'p';
 	create_handlers(&game);
+	/* create_background(&game, &game.sprites.bg); */
 	convert_sprites(&game.sprites, &game.data);
 	render_map(&game);
 	mlx_loop(game.data.mlx);
-	
-	
 }
 
 int	init_window(t_data *data, char *win_name, int w, int h)
@@ -41,7 +40,7 @@ int	init_window(t_data *data, char *win_name, int w, int h)
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (MLX_ERROR);
-	data->win = mlx_new_window(data->mlx, (w * 16) + 200, (h * 16) + 200,
+	data->win = mlx_new_window(data->mlx, (w * 32) + 100, (h * 32) + 100,
 		win_name);
 	free(win_name);
 	if (data->win == NULL)
@@ -61,16 +60,34 @@ void	convert_sprites(t_sprites *spr, t_data *data)
 	int	h;
 
 	spr->wall = mlx_xpm_file_to_image(data->mlx, PWALL, &w, &h);
-	printf("\nWall w: %d | h: %d", w, h);
 	spr->floor = mlx_xpm_file_to_image(data->mlx, PFLOOR, &w, &h);
-	printf("\nFloor w: %d | h: %d", w, h);
 	spr->key = mlx_xpm_file_to_image(data->mlx, PKEY, &w, &h);
-	printf("\nKey w: %d | h: %d", w, h);
 	spr->knight = mlx_xpm_file_to_image(data->mlx, PKNIGHT, &w, &h);
-	printf("\nKnight w: %d | h: %d", w, h);
 	spr->slime = mlx_xpm_file_to_image(data->mlx, PSLIME, &w, &h);
-	printf("\nSlime w: %d | h: %d", w, h);
 	spr->door = mlx_xpm_file_to_image(data->mlx, PDOOR, &w, &h);
-	printf("\nDoor w: %d | h: %d", w, h);
-	fflush(stdout);
 }
+
+/* void	create_background(t_game *g, t_img *bg)
+{
+	int		x;
+	int		y;
+	char    *pixel;
+	
+	bg->mlx_img = mlx_new_image(g->data.mlx, (g->map.width * 32) + 100, \
+		(g->map.height * 32) + 100);
+	bg->addr = mlx_get_data_addr(bg, &bg->bpp, &bg->line_len, &bg->endian);
+	y = 0;
+	while (y <= (g->map.height * 32) + 100)
+	{
+		x = 0;
+		while (x <= (g->map.width * 32) + 100)
+		{
+			printf("X: %d | Y: %d\n", x, y);
+			fflush(stdout);
+			pixel = bg->addr + (y * bg->line_len + x * (bg->bpp / 8));
+			*(int *)pixel = 0x0;
+			x++;
+		}
+		++y;
+	}
+} */

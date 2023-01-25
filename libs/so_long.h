@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/24 23:49:20 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:07:25 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_img
 
 typedef struct s_sprites
 {
+/* 	t_img	bg; */
 	void	*wall;
 	void	*floor;
 	void	*key;
@@ -103,7 +104,7 @@ int		end_game(t_game	*g);
 ///////////////////////////////////////////////////////
 
 int		handle_keypress(int keysym, t_game *game);
-int		handle_x_pressed(t_data *data);
+int		handle_x_pressed(t_game *game);
 void	create_handlers(t_game *game);
 
 ///////////////////////////////////////////////////////
@@ -111,6 +112,7 @@ void	create_handlers(t_game *game);
 ///////////////////////////////////////////////////////
 
 void	check_new_pos(t_game *g, int new_x, int new_y);
+/* void	create_background(t_game *g, t_img *bg); */
 void	render_background(t_data *data, int w, int h);
 void	render_map(t_game *g);
 void	print_img_from_map(t_game *g, int x, int y);

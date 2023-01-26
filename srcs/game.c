@@ -14,12 +14,6 @@
 
 void	check_new_pos(t_game *g, int new_x, int new_y)
 {
-	if (g->map.array[new_y][new_x] != '1')
-	{
-		g->map.p_x = new_x;
-		g->map.p_y = new_y;
-		g->steps++;
-	}
 	if (g->map.array[new_y][new_x] == 'C')
 	{
 		g->map.coins--;
@@ -29,7 +23,13 @@ void	check_new_pos(t_game *g, int new_x, int new_y)
 		g->status = 'd';
 	if (g->map.array[new_y][new_x] == 'E' && g->map.coins == 0)
 		g->status = 'w';
-	render_map(g);
+	if (g->map.array[new_y][new_x] != '1')
+	{
+		g->map.p_x = new_x;
+		g->map.p_y = new_y;
+		g->steps++;
+		render_map(g);
+	}
 }
 
 void	render_background(t_data *data, int w, int h)

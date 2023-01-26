@@ -14,22 +14,19 @@
 
 void	check_new_pos(t_game *g, int new_x, int new_y)
 {
-	if (g->map.array[new_y][new_x] == '1')
-		return ;
-	if (g->map.array[new_y][new_x] == 'N')
-		g->status = 'd';
+	if (g->map.array[new_y][new_x] != '1')
+	{
+		g->map.p_x = new_x;
+		g->map.p_y = new_y;
+		g->steps++;
+	}
 	if (g->map.array[new_y][new_x] == 'C')
 	{
 		g->map.coins--;
 		g->map.array[new_y][new_x] = '0';
 	}
-	if (g->map.array[new_y][new_x] == '0' || g->map.array[new_y][new_x] == 'E' \
-		|| g->map.array[new_y][new_x] == 'P')
-	{
-		g->map.p_x = new_x;
-		g->map.p_y = new_y;
-	}
-	g->steps++;
+	if (g->map.array[new_y][new_x] == 'N')
+		g->status = 'd';
 	if (g->map.array[new_y][new_x] == 'E' && g->map.coins == 0)
 		g->status = 'w';
 	render_map(g);
@@ -97,7 +94,7 @@ void	print_img_from_map(t_game *g, int x, int y)
 	if (g->map.array[y][x] == 'N')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
 			g->sprites.slime, 50 + (x * 32), 50 + (y * 32));
-	if (!(g->map.array[g->map.p_y][g->map.p_x] == 'E' && g->map.coins == 0))
+	if (g->status == 'p')
 		mlx_put_image_to_window(g->data.mlx, g->data.win, \
 				g->sprites.knight, 50 + (g->map.p_x * 32), \
 				50 + (g->map.p_y * 32));

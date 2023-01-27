@@ -2,7 +2,7 @@
 static char *key_silver_resized[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 170 2 ",
-"   c None",
+"   c #134214",
 ".  c black",
 "X  c #06060B",
 "o  c #07070C",

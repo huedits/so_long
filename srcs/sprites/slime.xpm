@@ -2,7 +2,7 @@
 static char *slime_idle_anim_f0_resized[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 129 2 ",
-"   c None",
+"   c #134214",
 ".  c black",
 "X  c #0A150B",
 "o  c #0A160B",

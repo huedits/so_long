@@ -2,7 +2,7 @@
 static char *stair_nextlevel_resized[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 89 1 ",
-"  c #000000",
+"  c #134214",
 ". c #090909",
 "X c #1D1D1D",
 "o c #272727",

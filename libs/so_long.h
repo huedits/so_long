@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/27 23:38:28 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:59:59 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # define MLX_ERROR 1
-# define PFLOOR "srcs/sprites/floor.xpm"
+# define PFLOOR "srcs/sprites/white_floor.xpm"
 # define PWALL "srcs/sprites/wall.xpm"
 # define PKNIGHT "srcs/sprites/knight.xpm"
 # define PSLIME "srcs/sprites/slime.xpm"

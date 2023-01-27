@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	}
 	game.status = 'p';
 	create_handlers(&game);
-	/* create_background(&game, &game.sprites.bg); */
+	create_background(&game, &game.data.img);
 	convert_sprites(&game.sprites, &game.data);
 	render_map(&game);
 	mlx_loop(game.data.mlx);
@@ -48,7 +48,7 @@ int	init_window(t_data *data, char *win_name, int w, int h)
 		free(data->win);
 		return (MLX_ERROR);
 	}
-	data->img.mlx_img = mlx_new_image(data->mlx, w, h);
+	data->img.mlx_img = mlx_new_image(data->mlx, (w * 32) + 100, (h * 32) + 100);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 		&data->img.line_len, &data->img.endian);
 	return (0);
@@ -67,27 +67,24 @@ void	convert_sprites(t_sprites *spr, t_data *data)
 	spr->door = mlx_xpm_file_to_image(data->mlx, PDOOR, &w, &h);
 }
 
-/* void	create_background(t_game *g, t_img *bg)
+void	create_background(t_game *g, t_img *bg)
 {
 	int		x;
 	int		y;
 	char    *pixel;
 	
-	bg->mlx_img = mlx_new_image(g->data.mlx, (g->map.width * 32) + 100, \
-		(g->map.height * 32) + 100);
-	bg->addr = mlx_get_data_addr(bg, &bg->bpp, &bg->line_len, &bg->endian);
 	y = 0;
 	while (y <= (g->map.height * 32) + 100)
 	{
 		x = 0;
 		while (x <= (g->map.width * 32) + 100)
 		{
-			printf("X: %d | Y: %d\n", x, y);
-			fflush(stdout);
+			/*printf("X: %d | Y: %d\n", x, y);
+			fflush(stdout);*/
 			pixel = bg->addr + (y * bg->line_len + x * (bg->bpp / 8));
 			*(int *)pixel = 0x0;
 			x++;
 		}
-		++y;
+		y++;
 	}
-} */
+}

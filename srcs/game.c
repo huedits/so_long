@@ -32,7 +32,7 @@ void	check_new_pos(t_game *g, int new_x, int new_y)
 	}
 }
 
-void	render_background(t_data *data, int w, int h)
+/*void	render_background(t_data *data, int w, int h)
 {
 	int		i;
 	int		j;
@@ -47,7 +47,7 @@ void	render_background(t_data *data, int w, int h)
 			}
 		++i;
 	}
-}
+}*/
 
 void	render_map(t_game *g)
 {
@@ -55,8 +55,9 @@ void	render_map(t_game *g)
 	int		j;
 	char 	*sstring;
 
-	//mlx_put_image_to_window(g->data.mlx, g->data.win, &g->sprites.bg, 0, 0);
-	render_background(&g->data, g->map.width, g->map.height);
+	mlx_put_image_to_window(g->data.mlx, g->data.win, &g->data.img, 0, 0);
+	write(1, "\naqui\n", 6);
+	/*render_background(&g->data, g->map.width, g->map.height);*/
 	sstring = ft_itoa(g->steps);
 	mlx_string_put(g->data.mlx, g->data.win, 3, 25, 0xFFFFFF, "Steps: ");
 	mlx_string_put(g->data.mlx, g->data.win, 50, 25, 0xFFFFFF, sstring);
@@ -108,6 +109,7 @@ int	end_game(t_game	*g)
 	mlx_destroy_image(g->data.mlx, g->sprites.slime);
 	mlx_destroy_image(g->data.mlx, g->sprites.knight);
 	mlx_destroy_image(g->data.mlx, g->sprites.door);
+	mlx_destroy_image(g->data.mlx, &g->data.img);
 	mlx_destroy_window(g->data.mlx, g->data.win);
 	mlx_destroy_display(g->data.mlx);
 	free(g->data.mlx);

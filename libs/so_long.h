@@ -39,7 +39,6 @@ typedef struct s_img
 
 typedef struct s_sprites
 {
-/* 	t_img	bg; */
 	void	*wall;
 	void	*floor;
 	void	*key;
@@ -112,8 +111,8 @@ void	create_handlers(t_game *game);
 ///////////////////////////////////////////////////////
 
 void	check_new_pos(t_game *g, int new_x, int new_y);
-/* void	create_background(t_game *g, t_img *bg); */
-void	render_background(t_data *data, int w, int h);
+void	create_background(t_game *g, t_img *bg);
+/*void	render_background(t_data *data, int w, int h);*/
 void	render_map(t_game *g);
 void	print_img_from_map(t_game *g, int x, int y);
 void	convert_sprites(t_sprites *spr, t_data *data);

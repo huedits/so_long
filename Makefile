@@ -23,15 +23,15 @@ MGSRCS = $(addprefix $(SRCPATH)mapgen/,	map_generator.c \
 
 all: $(NAME)
 
-$(NAME): $(FTPATH) $(MGNAME)
+$(NAME): $(FTPATH) $(MGNAME) $(SRCS)
 	$(CC) -I $(LIBPATH) $(SRCS) $(FTPATH) -g3 -o $@ $(CFLAGS) $(LXFLAGS)
 
 $(MGNAME):
 	$(CC) $(CFLAGS) -I $(LIBPATH) $(MGSRCS) -g3 -o $@
-	./mapgen
 
 clean:
 	$(RM) *.o
+	$(MAKE) clean -C ./libft/
 	$(RM) leaks*.txt
 
 fclean: clean
@@ -40,7 +40,7 @@ fclean: clean
 	$(RM) $(FTPATH)
 
 $(FTPATH):
-	$(MAKE) all -C ./libft/ && $(MAKE) clean -C ./libft/
+	$(MAKE) all -C ./libft/
 
 val:
 	valgrind --leak-check=full ./$(arg) 2> leaks_$(arg).txt
@@ -50,6 +50,7 @@ re: fclean all
 regen:
 	$(RM) $(MGNAME)
 	$(MAKE) $(MGNAME)
+	./mapgen
 
 git: fclean
 	git add .
@@ -57,4 +58,4 @@ git: fclean
 	git commit -m "Automatic commit from Makefile"
 	git push
 
-.PHONY: all $(NAME) $(MGNAME) clean fclean re regen git val libft
+.PHONY: all clean fclean re regen git val libft

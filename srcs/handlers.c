@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 07:06:59 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/25 00:18:38 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:26:44 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	create_handlers(t_game *game)
 		game);
 	mlx_hook(game->data.win, DestroyNotify, StructureNotifyMask,
 		&handle_x_pressed, game);
+	mlx_expose_hook(game->data.win, &render_map, game);
 }
 
 int	handle_keypress(int keysym, t_game *game)

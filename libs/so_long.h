@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:05:43 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/25 02:07:25 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:38:28 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 # define MLX_ERROR 1
-# define PWALL "srcs/sprites/wall.xpm"
 # define PFLOOR "srcs/sprites/floor.xpm"
+# define PWALL "srcs/sprites/wall.xpm"
 # define PKNIGHT "srcs/sprites/knight.xpm"
 # define PSLIME "srcs/sprites/slime.xpm"
 # define PDOOR "srcs/sprites/door.xpm"
@@ -39,8 +39,8 @@ typedef struct s_img
 
 typedef struct s_sprites
 {
-	void	*wall;
 	void	*floor;
+	void	*wall;
 	void	*key;
 	void	*slime;
 	void	*knight;
@@ -111,9 +111,7 @@ void	create_handlers(t_game *game);
 ///////////////////////////////////////////////////////
 
 void	check_new_pos(t_game *g, int new_x, int new_y);
-void	create_background(t_game *g, t_img *bg);
-/*void	render_background(t_data *data, int w, int h);*/
-void	render_map(t_game *g);
+int		render_map(t_game *g);
 void	print_img_from_map(t_game *g, int x, int y);
 void	convert_sprites(t_sprites *spr, t_data *data);
 

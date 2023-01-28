@@ -4,15 +4,17 @@ This project is a very small 2D game.
 Its purpose is to make you work with textures, sprites,
 and some other very basic gameplay elements.</p>
 
-<img src="https://game.42sp.org.br/static/assets/achievements/so_longn.png" align="right">
+<img src="https://game.42sp.org.br/static/assets/achievements/so_longm.png" align="right">
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 
 ### Content
-This project has been completed and is being evaluated.
+This project has been completed and evaluated.
 ```diff
-- Not finished.
++ Final grade: 115/100
 ```
+<img src="so_long.png" alt="Thank you for all the fish!" />
+
 - [x] Map generator (Bonus) - [map_generator.h](libs/map_generator.h) | [map_generator.c](srcs/map_generator.c) | [map_generator_utils.c](srcs/map_generator_utils.c)
 - [x] Map validation
 - [x] Graphics (MiniLibX)

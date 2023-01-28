@@ -20,7 +20,7 @@ This project has been completed and is being evaluated.
 
 Obs: This project includes previous projects [libft](https://github.com/huedits/libft) and [get_next_line](https://github.com/huedits/get_next_line).
 
-**Source files:** 
+**Source files:** \
 [so_long.c](srcs/so_long.c)
 | [so_long_utils.c](srcs/so_long_utils.c)
 | [map_validation.c](srcs/map_validation.c)

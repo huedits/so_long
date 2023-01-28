@@ -32,9 +32,7 @@ Obs: This project includes previous projects [libft](https://github.com/huedits/
 
 **[Makefile](Makefile)**
 
-**Sprites:** (All sprites were provided by [o_lobster on itch.io](https://o-lobster.itch.io/simple-dungeon-crawler-16x16-pixel-pack)). \
-Floor: <img src="srcs/sprites/floor.xpm">
-
+*(All sprites were provided by [o_lobster on itch.io](https://o-lobster.itch.io/simple-dungeon-crawler-16x16-pixel-pack)).*
 
 
 ## 📝 License

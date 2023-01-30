@@ -15,7 +15,7 @@ This project has been completed and evaluated.
 ```
 <img src="so_long.png" alt="Thank you for all the fish!" />
 
-- [x] Map generator (Bonus) - [map_generator.h](libs/map_generator.h) | [map_generator.c](srcs/map_generator.c) | [map_generator_utils.c](srcs/map_generator_utils.c)
+- [x] Map generator (Bonus) - [map_generator.h](libs/map_generator.h) | [map_generator.c](srcs/mapgen/map_generator.c) | [map_generator_utils.c](srcs/mapgen/map_generator_utils.c)
 - [x] Map validation
 - [x] Graphics (MiniLibX)
 - [x] Gameplay

@@ -94,7 +94,7 @@ void	get_player_pos(t_map *map)
 		j = 1;
 		while (j < map->width - 1 && found == 0)
 		{
-			if (map->array[i][j] == 'P')
+			if (map->array[i][j] == ENUM_SPAWN)
 			{
 				map->p_x = j;
 				map->p_y = i;

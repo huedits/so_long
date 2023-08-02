@@ -21,6 +21,13 @@
 # define PDOOR "srcs/sprites/door.xpm"
 # define PKEY "srcs/sprites/key.xpm"
 
+# define ENUM_WALL '1'
+# define ENUM_SPACE '0'
+# define ENUM_COIN 'C'
+# define ENUM_EXIT 'E'
+# define ENUM_SPAWN 'P'
+# define ENUM_ENEMY 'N'
+
 # include "get_next_line.h"
 # include <stdio.h>
 # include <sys/wait.h>

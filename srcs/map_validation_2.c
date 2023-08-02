@@ -28,8 +28,8 @@ int	check_mapstr(t_map *map, char *str)
 		}
 		i++;
 	}
-	coins = ft_strccount(str, 'C');
-	if (ft_strccount(str, 'E') != 1 || ft_strccount(str, 'P') != 1
+	coins = ft_strccount(str, ENUM_COIN);
+	if (ft_strccount(str, ENUM_EXIT) != 1 || ft_strccount(str, ENUM_SPAWN) != 1
 		|| coins < 1)
 	{
 		free(map->name);
@@ -41,15 +41,15 @@ int	check_mapstr(t_map *map, char *str)
 
 int	get_next_path(t_map *mp, int x, int y)
 {
-	if (mp->array[y][x] != '1' && mp->array[y][x] != 'X'
-		&& mp->array[y][x] != 'N')
+	if (mp->array[y][x] != ENUM_WALL && mp->array[y][x] != 'X'
+		&& mp->array[y][x] != ENUM_ENEMY)
 		return (1);
 	return (0);
 }
 
 int	check_path(t_map *map, int x, int y)
 {
-	if (map->array[y][x] == 'C' || map->array[y][x] == 'E')
+	if (map->array[y][x] == ENUM_COIN || map->array[y][x] == ENUM_EXIT)
 		map->coins--;
 	map->array[y][x] = 'X';
 	if (get_next_path(map, x, y - 1) && map->coins > -1)

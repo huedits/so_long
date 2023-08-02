@@ -76,8 +76,8 @@ void	new_tunnel(t_map *map, int *rdir, int *cpos)
 			break ;
 		cpos[0] += rdir[0];
 		cpos[1] += rdir[1];
-		if (map->array[cpos[0]][cpos[1]] == '1')
-			map->array[cpos[0]][cpos[1]] = '0';
+		if (map->array[cpos[0]][cpos[1]] == ENUM_WALL)
+			map->array[cpos[0]][cpos[1]] = ENUM_SPACE;
 		tunnel_size--;
 	}
 }

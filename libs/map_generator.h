@@ -13,6 +13,13 @@
 #ifndef MAP_GENERATOR_H
 # define MAP_GENERATOR_H
 
+# define ENUM_WALL '1'
+# define ENUM_SPACE '0'
+# define ENUM_COIN 'C'
+# define ENUM_EXIT 'E'
+# define ENUM_SPAWN 'P'
+# define ENUM_ENEMY 'N'
+
 # include <time.h>
 # include <stdlib.h>
 # include <unistd.h>

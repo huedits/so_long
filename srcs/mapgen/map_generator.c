@@ -50,7 +50,7 @@ void	init_map(t_map *ptmap)
 		j = 0;
 		while (j < ptmap->width)
 		{
-			ptmap->array[i - 1][j] = '1';
+			ptmap->array[i - 1][j] = ENUM_WALL;
 			j++;
 		}
 		ptmap->array[i - 1][j] = '\0';
@@ -68,7 +68,7 @@ void	create_tunnels(t_map *tnmap)
 	ldir[1] = 0;
 	cpos[0] = random() % tnmap->height;
 	cpos[1] = random() % tnmap->width;
-	tnmap->array[cpos[0]][cpos[1]] = 'P';
+	tnmap->array[cpos[0]][cpos[1]] = ENUM_SPAWN;
 	while (tnmap->max_tunnels > 0)
 	{
 		get_random_dir(rdir, ldir);
@@ -77,12 +77,12 @@ void	create_tunnels(t_map *tnmap)
 		ldir[1] = rdir[1];
 		tnmap->max_tunnels--;
 	}
-	if (tnmap->array[cpos[0]][cpos[1]] == 'P')
+	if (tnmap->array[cpos[0]][cpos[1]] == ENUM_SPAWN)
 	{
 		get_random_dir(rdir, ldir);
 		new_tunnel(tnmap, rdir, cpos);
 	}
-	tnmap->array[cpos[0]][cpos[1]] = 'E';
+	tnmap->array[cpos[0]][cpos[1]] = ENUM_EXIT;
 }
 
 void	add_collectibles(t_map *map)
@@ -95,9 +95,9 @@ void	add_collectibles(t_map *map)
 	{
 		rpos[0] = random() % map->height;
 		rpos[1] = random() % map->width;
-		if (map->array[rpos[0]][rpos[1]] == '0')
+		if (map->array[rpos[0]][rpos[1]] == ENUM_SPACE)
 		{
-			map->array[rpos[0]][rpos[1]] = 'C';
+			map->array[rpos[0]][rpos[1]] = ENUM_COIN;
 			col_added++;
 		}
 	}

@@ -7,7 +7,7 @@ FTPATH = ./libft/libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LXFLAGS = -lX11 -lXext -lmlx
+LXFLAGS = -lmlx -lXext -lX11
 
 RM = rm -rf
 

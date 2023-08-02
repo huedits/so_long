@@ -63,14 +63,14 @@ void	check_borders(t_map *map)
 	is_valid = 1;
 	while (i < map->width && is_valid == 1)
 	{
-		if (map->array[0][i] != '1' || map->array[map->height - 1][i] != '1')
+		if (map->array[0][i] != ENUM_WALL || map->array[map->height - 1][i] != ENUM_WALL)
 			is_valid = 0;
 		i++;
 	}
 	i = 1;
 	while (i < map->height - 1 && is_valid == 1)
 	{
-		if (map->array[i][0] != '1' || map->array[i][map->width - 1] != '1')
+		if (map->array[i][0] != ENUM_WALL || map->array[i][map->width - 1] != ENUM_WALL)
 			is_valid = 0;
 		i++;
 	}
